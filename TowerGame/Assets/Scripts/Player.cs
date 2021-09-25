@@ -8,10 +8,17 @@ public class Player : MonoBehaviour
     private Gravity gravity;
     private Drag drag;
     [SerializeField] private Rotation rotation;
-    [SerializeField] private Selector selector;
+    [SerializeField] private Selector buildSelector;
+    [SerializeField] private Selector buildStartpointSelector;
+    [SerializeField] private Selector deleteSelector;
+    [SerializeField] private Selector previewSelector;
     // Start is called before the first frame update
     void Start()
     {
+        // Move to its own class later:
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
+
         movement = GetComponent<Movement>();
         gravity = GetComponent<Gravity>();
         drag = GetComponent<Drag>();
@@ -26,7 +33,17 @@ public class Player : MonoBehaviour
         drag.DoDrag();
         rotation.Rotate();
 
-        if (Input.GetButtonDown("Select"))
-            selector.SelectObject();
+        if (Input.GetButtonDown("Create"))
+            buildStartpointSelector.SelectObject();
+        if (Input.GetButtonUp("Create"))
+            buildSelector.SelectObject();
+
+
+
+        if (Input.GetButtonDown("Delete"))
+            deleteSelector.SelectObject();
+
+        if (previewSelector.RangeCheck())
+            previewSelector.SelectObject();
     }
 }
