@@ -5,6 +5,7 @@ using UnityEngine;
 public class CreateObject : MonoBehaviour
 {
     [SerializeField] private GameObject selectedObject;
+    [SerializeField] private DataDirectory directory;
     private bool isSingle = true;
     private Vector3 startPosition; // Starting point for a drag selection
     public void PlaceObject(GameObject anchor, Vector3 position)
@@ -78,7 +79,12 @@ public class CreateObject : MonoBehaviour
 
     private void Create(GameObject anchor, Vector3 position)
     {
-        GameObject new_object = Instantiate(selectedObject, position, new Quaternion());
+        GameObject new_object = Instantiate(selectedObject, position - directory.GetSelectedObject().offset, new Quaternion());
         new_object.transform.SetParent(anchor.transform);
+    }
+
+    public void RefreshSelection()
+    {
+        selectedObject = directory.GetSelectedObject().prefab;
     }
 }

@@ -5,8 +5,8 @@ using UnityEngine;
 public class LightFlicker : MonoBehaviour
 {
     private Light light;
-    private float maxIntensity;
-    private float minIntensity;
+    [SerializeField] private float maxIntensity;
+    [SerializeField] private float minIntensity;
 
     private void Start()
     {
@@ -14,6 +14,6 @@ public class LightFlicker : MonoBehaviour
     }
     void Update()
     {
-        //light.intensity = 
+        light.range = minIntensity + (Random.value * (maxIntensity - minIntensity));
     }
 }

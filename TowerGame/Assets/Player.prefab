@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 1352369813950017683}
   - component: {fileID: 1352369813950017710}
   - component: {fileID: 1352369813950017711}
+  - component: {fileID: 1211412196}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -175,6 +176,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragStrength: {x: 500, y: 0, z: 500}
+--- !u!114 &1211412196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352369813950017686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc5601e24bfb12949b8e91eac65607de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildObjects: []
+  changeSelectionEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8986960861601192741}
+        m_TargetAssemblyTypeName: Preview, Assembly-CSharp
+        m_MethodName: RefreshPreview
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7807816000159498775}
+        m_TargetAssemblyTypeName: CreateObject, Assembly-CSharp
+        m_MethodName: RefreshSelection
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  selectionIndex: 0
 --- !u!1 &1352369814746120767
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,6 +477,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   previewObject: {fileID: 7210973601539732521, guid: 6fe3bb2b96b1d7c428feca6f3e751657, type: 3}
   previewMat: {fileID: 2100000, guid: 592b046eabc51d94886ddb31f18dc36a, type: 2}
+  directory: {fileID: 1211412196}
 --- !u!1 &4609243906107819605
 GameObject:
   m_ObjectHideFlags: 0
@@ -654,6 +697,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedObject: {fileID: 7210973601539732521, guid: 6fe3bb2b96b1d7c428feca6f3e751657, type: 3}
+  directory: {fileID: 1211412196}
 --- !u!1 &8803147846131196551
 GameObject:
   m_ObjectHideFlags: 0

@@ -490,7 +490,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh16214
+  m_Name: pb_Mesh16236
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -757,6 +757,25 @@ MonoBehaviour:
   cycleTime: 600
   nightThreshold: 0.2
   isNight: 0
+--- !u!1 &854180954 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7679846111230798001, guid: 18c964f054d503e4eae28252467af4b8, type: 3}
+  m_PrefabInstance: {fileID: 1167339157}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &854180956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854180954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6c19fdffad2b0042b657ae030493554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxIntensity: 0
+  minIntensity: 0
 --- !u!4 &896219531 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7679846111230798007, guid: 18c964f054d503e4eae28252467af4b8, type: 3}
