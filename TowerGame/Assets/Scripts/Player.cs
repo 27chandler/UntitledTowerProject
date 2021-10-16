@@ -14,11 +14,16 @@ public class Player : MonoBehaviour
     [SerializeField] private Selector previewSelector;
     [SerializeField] private CreateObject objectCreator;
     [SerializeField] private Preview objectPreview;
+
+    [SerializeField] private bool canPlaceObject = true;
+
+    public bool CanPlaceObject { get => canPlaceObject; set => canPlaceObject = value; }
+
     // Start is called before the first frame update
     void Start()
     {
         // Move to its own class later:
-        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
         movement = GetComponent<Movement>();
@@ -35,10 +40,13 @@ public class Player : MonoBehaviour
         drag.DoDrag();
         rotation.Rotate();
 
-        if (Input.GetButtonDown("Create"))
-            buildStartpointSelector.SelectObject();
-        if (Input.GetButtonUp("Create"))
-            buildSelector.SelectObject();
+        if (canPlaceObject)
+        {
+            if (Input.GetButtonDown("Create"))
+                buildStartpointSelector.SelectObject();
+            if (Input.GetButtonUp("Create"))
+                buildSelector.SelectObject();
+        }
 
 
 

@@ -7,8 +7,11 @@ public class Preview : MonoBehaviour
     [SerializeField] private GameObject previewObject;
     [SerializeField] private Material previewMat;
     [SerializeField] private DataDirectory directory;
+    [SerializeField] private Player player;
+    [SerializeField] private Vector3 previewScale = new Vector3(0.9f, 0.9f, 0.9f);
     private Transform preview;
     private Quaternion previewRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+    private List<TriggerCollisionList> freeSpaceChecker = new List<TriggerCollisionList>();
     public void SetPosition(GameObject anchor, Vector3 position)
     {
         if (preview == null)
@@ -16,6 +19,14 @@ public class Preview : MonoBehaviour
             RefreshPreview();
             preview = Instantiate(previewObject).transform;
             preview.rotation = previewRotation;
+
+            Vector3 new_scale = preview.localScale;
+            new_scale.x *= previewScale.x;
+            new_scale.y *= previewScale.y;
+            new_scale.z *= previewScale.z;
+
+            preview.localScale = new_scale;
+
             MeshRenderer[] meshes = preview.GetComponentsInChildren<MeshRenderer>();
 
             foreach (MeshRenderer mesh in meshes)
@@ -30,13 +41,41 @@ public class Preview : MonoBehaviour
                 mesh.materials = mats;
             }
 
+            freeSpaceChecker.Clear();
             Collider[] colliders = preview.GetComponentsInChildren<Collider>();
             foreach (Collider collider in colliders)
             {
-                collider.enabled = false;
+                collider.gameObject.layer = LayerMask.NameToLayer("Default");
+                collider.isTrigger = true;
+                freeSpaceChecker.Add(collider.gameObject.AddComponent<TriggerCollisionList>());
             }
         }
+        IsSpaceFreeCheck();
+
         preview.position = position - directory.GetSelectedObject().offset;
+    }
+
+    private void IsSpaceFreeCheck()
+    {
+        bool is_space_clear = true;
+
+        foreach (TriggerCollisionList triggers in freeSpaceChecker)
+        {
+            if (triggers.IsEmpty() == false)
+            {
+                is_space_clear = false;
+                break;
+            }
+        }
+
+        if (is_space_clear)
+        {
+            player.CanPlaceObject = true;
+        }
+        else
+        {
+            player.CanPlaceObject = false;
+        }
     }
 
     public void RefreshPreview()

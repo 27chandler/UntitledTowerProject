@@ -481,6 +481,7 @@ MonoBehaviour:
   previewObject: {fileID: 7210973601539732521, guid: 6fe3bb2b96b1d7c428feca6f3e751657, type: 3}
   previewMat: {fileID: 2100000, guid: 592b046eabc51d94886ddb31f18dc36a, type: 2}
   directory: {fileID: 1211412196}
+  player: {fileID: 1352369813950017681}
 --- !u!1 &4609243906107819605
 GameObject:
   m_ObjectHideFlags: 0
