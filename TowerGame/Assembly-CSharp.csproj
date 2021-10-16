@@ -58,21 +58,21 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\NormalsReplacementShader.cs" />
     <Compile Include="Assets\Scripts\LightFlicker.cs" />
-    <Compile Include="Assets\Scripts\Gravity.cs" />
+    <Compile Include="Assets\Scripts\Physics\Gravity.cs" />
     <Compile Include="Assets\Scripts\Rotation.cs" />
     <Compile Include="Assets\Scripts\DayCycle.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\RigidBodyAffector.cs" />
     <Compile Include="Assets\Scripts\Movement.cs" />
+    <Compile Include="Assets\Scripts\DataDirectory.cs" />
     <Compile Include="Assets\Scripts\DestroyObject.cs" />
     <Compile Include="Assets\Scripts\ProceduralStars.cs" />
     <Compile Include="Assets\Resources\Data\WorldData.cs" />
     <Compile Include="Assets\Scripts\Selector.cs" />
     <Compile Include="Assets\Scripts\CreateObject.cs" />
-    <Compile Include="Assets\Scripts\Drag.cs" />
-    <Compile Include="Assets\Scripts\Preview.cs" />
+    <Compile Include="Assets\Scripts\Physics\Drag.cs" />
     <Compile Include="Assets\Resources\Data\BuildData.cs" />
-    <Compile Include="Assets\Scripts\DataDirectory.cs" />
+    <Compile Include="Assets\Scripts\Preview.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\TestShader.shader" />

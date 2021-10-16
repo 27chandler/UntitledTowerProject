@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     [SerializeField] private Selector buildStartpointSelector;
     [SerializeField] private Selector deleteSelector;
     [SerializeField] private Selector previewSelector;
+    [SerializeField] private CreateObject objectCreator;
+    [SerializeField] private Preview objectPreview;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,5 +47,11 @@ public class Player : MonoBehaviour
 
         if (previewSelector.RangeCheck())
             previewSelector.SelectObject();
+
+        if (Input.GetButtonDown("Rotate"))
+        {
+            objectCreator.RotateCreation(90.0f);
+            objectPreview.RotatePreview(90.0f);
+        }
     }
 }

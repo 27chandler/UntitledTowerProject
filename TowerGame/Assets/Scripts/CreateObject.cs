@@ -8,10 +8,11 @@ public class CreateObject : MonoBehaviour
     [SerializeField] private DataDirectory directory;
     private bool isSingle = true;
     private Vector3 startPosition; // Starting point for a drag selection
+    private Quaternion objectRotation = Quaternion.Euler(0.0f,0.0f,0.0f);
     public void PlaceObject(GameObject anchor, Vector3 position)
     {
         if (isSingle)
-            Instantiate(selectedObject, position, new Quaternion());
+            Create(anchor, position);
         else
         {
             // Forcing the placement to start from a specific corner and
@@ -79,12 +80,17 @@ public class CreateObject : MonoBehaviour
 
     private void Create(GameObject anchor, Vector3 position)
     {
-        GameObject new_object = Instantiate(selectedObject, position - directory.GetSelectedObject().offset, new Quaternion());
+        GameObject new_object = Instantiate(selectedObject, position - directory.GetSelectedObject().offset, objectRotation);
         new_object.transform.SetParent(anchor.transform);
     }
 
     public void RefreshSelection()
     {
         selectedObject = directory.GetSelectedObject().prefab;
+    }
+
+    public void RotateCreation(float rotation)
+    {
+        objectRotation *= Quaternion.AngleAxis(rotation, Vector3.up);
     }
 }

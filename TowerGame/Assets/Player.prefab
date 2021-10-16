@@ -135,6 +135,8 @@ MonoBehaviour:
   buildStartpointSelector: {fileID: 1543864468746929691}
   deleteSelector: {fileID: 1457646330}
   previewSelector: {fileID: 2968299846308238147}
+  objectCreator: {fileID: 7807816000159498775}
+  objectPreview: {fileID: 8986960861601192741}
 --- !u!114 &1352369813950017683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -448,6 +450,7 @@ MonoBehaviour:
     m_Bits: 192
   isSelectingAdjacent: 1
   selectedObject: {fileID: 0}
+  directory: {fileID: 0}
   activationEvent:
     m_PersistentCalls:
       m_Calls:
@@ -527,6 +530,7 @@ MonoBehaviour:
     m_Bits: 192
   isSelectingAdjacent: 1
   selectedObject: {fileID: 0}
+  directory: {fileID: 0}
   activationEvent:
     m_PersistentCalls:
       m_Calls:
@@ -604,6 +608,7 @@ MonoBehaviour:
     m_Bits: 64
   isSelectingAdjacent: 0
   selectedObject: {fileID: 0}
+  directory: {fileID: 0}
   activationEvent:
     m_PersistentCalls:
       m_Calls:
@@ -669,6 +674,7 @@ MonoBehaviour:
     m_Bits: 192
   isSelectingAdjacent: 1
   selectedObject: {fileID: 0}
+  directory: {fileID: 0}
   activationEvent:
     m_PersistentCalls:
       m_Calls:

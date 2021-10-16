@@ -36,6 +36,7 @@ public class Selector : MonoBehaviour
         }
     }
 
+    // Checks if a valid object is within range of the selectors raycast
     public bool RangeCheck()
     {
         RaycastHit hit = CastRay();

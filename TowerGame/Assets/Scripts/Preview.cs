@@ -8,12 +8,14 @@ public class Preview : MonoBehaviour
     [SerializeField] private Material previewMat;
     [SerializeField] private DataDirectory directory;
     private Transform preview;
+    private Quaternion previewRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
     public void SetPosition(GameObject anchor, Vector3 position)
     {
         if (preview == null)
         {
             RefreshPreview();
             preview = Instantiate(previewObject).transform;
+            preview.rotation = previewRotation;
             MeshRenderer[] meshes = preview.GetComponentsInChildren<MeshRenderer>();
 
             foreach (MeshRenderer mesh in meshes)
@@ -42,5 +44,11 @@ public class Preview : MonoBehaviour
         previewObject = directory.GetSelectedObject().prefab;
         if (preview != null)
             Destroy(preview.gameObject);
+    }
+
+    public void RotatePreview(float rotation)
+    {
+        previewRotation *= Quaternion.AngleAxis(rotation, Vector3.up);
+        RefreshPreview();
     }
 }
