@@ -56,6 +56,7 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\TriggerCollisionList.cs" />
     <Compile Include="Assets\Scripts\NormalsReplacementShader.cs" />
     <Compile Include="Assets\Scripts\LightFlicker.cs" />
     <Compile Include="Assets\Scripts\Physics\Gravity.cs" />
@@ -65,15 +66,15 @@
     <Compile Include="Assets\Scripts\RigidBodyAffector.cs" />
     <Compile Include="Assets\Scripts\Movement.cs" />
     <Compile Include="Assets\Scripts\DataDirectory.cs" />
-    <Compile Include="Assets\Scripts\DestroyObject.cs" />
+    <Compile Include="Assets\Scripts\Object Management\DestroyObject.cs" />
     <Compile Include="Assets\Scripts\ProceduralStars.cs" />
     <Compile Include="Assets\Resources\Data\WorldData.cs" />
     <Compile Include="Assets\Scripts\Selector.cs" />
-    <Compile Include="Assets\Scripts\CreateObject.cs" />
+    <Compile Include="Assets\Scripts\Object Management\CreateObject.cs" />
     <Compile Include="Assets\Scripts\Physics\Drag.cs" />
     <Compile Include="Assets\Resources\Data\BuildData.cs" />
-    <Compile Include="Assets\Scripts\Preview.cs" />
-    <Compile Include="Assets\Scripts\TriggerCollisionList.cs" />
+    <Compile Include="Assets\Scripts\Object Management\Preview.cs" />
+    <Compile Include="Assets\Scripts\Gizmos\OriginDisplayGizmo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\TestShader.shader" />

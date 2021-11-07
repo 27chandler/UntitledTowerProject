@@ -87,7 +87,9 @@ public class Preview : MonoBehaviour
 
     public void RotatePreview(float rotation)
     {
-        previewRotation *= Quaternion.AngleAxis(rotation, Vector3.up);
+        previewObject.transform.RotateAround(transform.position, Vector3.up, rotation);
+        //previewRotation *= Quaternion.AngleAxis(rotation, Vector3.up);
+        previewRotation = previewObject.transform.rotation;
         RefreshPreview();
     }
 }

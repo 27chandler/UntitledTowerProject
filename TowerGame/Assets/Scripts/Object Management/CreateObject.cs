@@ -80,8 +80,8 @@ public class CreateObject : MonoBehaviour
 
     private void Create(GameObject anchor, Vector3 position)
     {
-        GameObject new_object = Instantiate(selectedObject, position - directory.GetSelectedObject().offset, objectRotation);
-        new_object.transform.SetParent(anchor.transform);
+        GameObject new_object = Instantiate(selectedObject, position - directory.GetSelectedObject().offset, new Quaternion());
+        new_object.transform.RotateAround(position - directory.GetSelectedObject().offset, Vector3.up, objectRotation.eulerAngles.y);
     }
 
     public void RefreshSelection()
