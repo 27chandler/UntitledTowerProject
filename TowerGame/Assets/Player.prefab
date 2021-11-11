@@ -137,6 +137,7 @@ MonoBehaviour:
   previewSelector: {fileID: 2968299846308238147}
   objectCreator: {fileID: 7807816000159498775}
   objectPreview: {fileID: 8986960861601192741}
+  canPlaceObject: 1
 --- !u!114 &1352369813950017683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,7 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6b1e941503fd8149b7c6e84e53b4e5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strength: 98.1
+  strength: 981
   floorDistance: 0.6
 --- !u!114 &1352369813950017711
 MonoBehaviour:
@@ -482,6 +483,7 @@ MonoBehaviour:
   previewMat: {fileID: 2100000, guid: 592b046eabc51d94886ddb31f18dc36a, type: 2}
   directory: {fileID: 1211412196}
   player: {fileID: 1352369813950017681}
+  previewScale: {x: 0.9, y: 0.9, z: 0.9}
 --- !u!1 &4609243906107819605
 GameObject:
   m_ObjectHideFlags: 0
