@@ -12,6 +12,33 @@ public class Preview : MonoBehaviour
     private Transform preview;
     private Quaternion previewRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
     private List<TriggerCollisionList> freeSpaceChecker = new List<TriggerCollisionList>();
+    
+    public void ShowPreview(GameObject anchor, Vector3 position)
+    {
+        if (preview != null)
+        {
+            MeshRenderer[] meshes = preview.GetComponentsInChildren<MeshRenderer>();
+
+            foreach (var mesh in meshes)
+            {
+                mesh.enabled = true;
+            }
+        }
+    }
+
+    public void HidePreview()
+    {
+        if (preview != null)
+        {
+            MeshRenderer[] meshes = preview.GetComponentsInChildren<MeshRenderer>();
+
+            foreach (var mesh in meshes)
+            {
+                mesh.enabled = false;
+            }
+        }
+    }
+
     public void SetPosition(GameObject anchor, Vector3 position)
     {
         if (preview == null)
@@ -27,19 +54,7 @@ public class Preview : MonoBehaviour
 
             preview.localScale = new_scale;
 
-            MeshRenderer[] meshes = preview.GetComponentsInChildren<MeshRenderer>();
-
-            foreach (MeshRenderer mesh in meshes)
-            {
-                Material[] mats = mesh.materials;
-
-                for (int i = 0; i < mats.Length; i++)
-                {
-                    mats[i] = previewMat;
-                }
-
-                mesh.materials = mats;
-            }
+            SetAllMaterials(preview, previewMat);
 
             freeSpaceChecker.Clear();
             Collider[] colliders = preview.GetComponentsInChildren<Collider>();
@@ -53,6 +68,23 @@ public class Preview : MonoBehaviour
         IsSpaceFreeCheck();
 
         preview.position = position - directory.GetSelectedObject().offset;
+    }
+
+    private void SetAllMaterials(Transform target, Material mat)
+    {
+        MeshRenderer[] meshes = target.GetComponentsInChildren<MeshRenderer>();
+
+        foreach (MeshRenderer mesh in meshes)
+        {
+            Material[] mats = mesh.materials;
+
+            for (int i = 0; i < mats.Length; i++)
+            {
+                mats[i] = mat;
+            }
+
+            mesh.materials = mats;
+        }
     }
 
     private void IsSpaceFreeCheck()

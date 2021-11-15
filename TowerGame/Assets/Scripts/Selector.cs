@@ -12,8 +12,13 @@ public class Selector : MonoBehaviour
     [SerializeField] private GameObject selectedObject;
     [SerializeField] private DataDirectory directory;
     [SerializeField] private UnityEvent<GameObject,Vector3> activationEvent;
+    [SerializeField] private UnityEvent deactivationEvent;
+
+    private bool isSomethingSelected = false;
 
     private BuildData objectData;
+
+    public bool IsSomethingSelected { get => isSomethingSelected; set => isSomethingSelected = value; }
 
     public void SelectObject()
     {
@@ -21,6 +26,8 @@ public class Selector : MonoBehaviour
 
         if (hit.collider != null)
         {
+            isSomethingSelected = true;
+
             Vector3 select_position;
             if (isSelectingAdjacent)
                 select_position = hit.point - (transform.forward * 0.1f);           
@@ -34,6 +41,11 @@ public class Selector : MonoBehaviour
             activationEvent?.Invoke(selectedObject, select_position);
 
         }
+        else
+        {
+            isSomethingSelected = false;
+            deactivationEvent?.Invoke();
+        }
     }
 
     // Checks if a valid object is within range of the selectors raycast
@@ -44,7 +56,11 @@ public class Selector : MonoBehaviour
         if (hit.collider != null)
             return true;
         else
+        {
+            isSomethingSelected = false;
+            deactivationEvent?.Invoke();
             return false;
+        }
     }
 
     private RaycastHit CastRay()
@@ -52,6 +68,7 @@ public class Selector : MonoBehaviour
         Ray ray = new Ray(transform.position, transform.forward);
         RaycastHit hit;
         Physics.Raycast(ray, out hit, maxDistance, mask);
+
         return hit;
     }
 }
