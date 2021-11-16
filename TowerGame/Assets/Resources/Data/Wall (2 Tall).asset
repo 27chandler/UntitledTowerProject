@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 236cfb04fe220fe4ca0b97fa83ad982f, type: 3}
-  m_Name: Cube
+  m_Name: Wall (2 Tall)
   m_EditorClassIdentifier: 
-  prefab: {fileID: 7210973601539732521, guid: 6fe3bb2b96b1d7c428feca6f3e751657, type: 3}
+  prefab: {fileID: 7630080644772006504, guid: 2c8baea8cdbde8745acf35524a0f4913, type: 3}
   offset: {x: 0.5, y: 0.5, z: 0.5}
