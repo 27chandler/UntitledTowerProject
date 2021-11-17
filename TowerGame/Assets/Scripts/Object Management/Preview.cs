@@ -11,8 +11,13 @@ public class Preview : MonoBehaviour
     [SerializeField] private Vector3 previewScale = new Vector3(0.9f, 0.9f, 0.9f);
     private Transform preview;
     private Quaternion previewRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
-    private List<TriggerCollisionList> freeSpaceChecker = new List<TriggerCollisionList>();
-    
+    [SerializeField] private List<TriggerCollisionList> freeSpaceChecker = new List<TriggerCollisionList>();
+
+    private void Update()
+    {
+        previewObject.transform.rotation = previewRotation;
+    }
+
     public void ShowPreview(GameObject anchor, Vector3 position)
     {
         if (preview != null)
@@ -44,30 +49,45 @@ public class Preview : MonoBehaviour
         if (preview == null)
         {
             RefreshPreview();
+
             preview = Instantiate(previewObject).transform;
             preview.rotation = previewRotation;
 
-            Vector3 new_scale = preview.localScale;
-            new_scale.x *= previewScale.x;
-            new_scale.y *= previewScale.y;
-            new_scale.z *= previewScale.z;
-
-            preview.localScale = new_scale;
-
+            ChangeScale();
             SetAllMaterials(preview, previewMat);
-
-            freeSpaceChecker.Clear();
-            Collider[] colliders = preview.GetComponentsInChildren<Collider>();
-            foreach (Collider collider in colliders)
-            {
-                collider.gameObject.layer = LayerMask.NameToLayer("Default");
-                collider.isTrigger = true;
-                freeSpaceChecker.Add(collider.gameObject.AddComponent<TriggerCollisionList>());
-            }
+            UpdateFreeSpaceChecker();
         }
         IsSpaceFreeCheck();
 
         preview.position = position - directory.GetSelectedObject().offset;
+    }
+
+    private void ChangeScale()
+    {
+        Transform[] children = preview.GetComponentsInChildren<Transform>();
+
+        foreach (var child in children)
+        {
+            Vector3 new_scale = child.localScale;
+            new_scale.x *= previewScale.x;
+            new_scale.y *= previewScale.y;
+            new_scale.z *= previewScale.z;
+
+            child.localScale = new_scale;
+        }
+
+    }
+
+    private void UpdateFreeSpaceChecker()
+    {
+        freeSpaceChecker.Clear();
+        Collider[] colliders = preview.GetComponentsInChildren<Collider>();
+        foreach (Collider collider in colliders)
+        {
+            collider.gameObject.layer = LayerMask.NameToLayer("Default");
+            collider.isTrigger = true;
+            freeSpaceChecker.Add(collider.gameObject.AddComponent<TriggerCollisionList>());
+        }
     }
 
     private void SetAllMaterials(Transform target, Material mat)
@@ -112,15 +132,20 @@ public class Preview : MonoBehaviour
 
     public void RefreshPreview()
     {
+        previewRotation = previewObject.transform.rotation;
+
         previewObject = directory.GetSelectedObject().prefab;
         if (preview != null)
             Destroy(preview.gameObject);
+
+        IsSpaceFreeCheck();
     }
 
     public void RotatePreview(float rotation)
     {
+        preview.rotation = previewRotation;
+
         previewObject.transform.RotateAround(transform.position, Vector3.up, rotation);
-        //previewRotation *= Quaternion.AngleAxis(rotation, Vector3.up);
         previewRotation = previewObject.transform.rotation;
         RefreshPreview();
     }

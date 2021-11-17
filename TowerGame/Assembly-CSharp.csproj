@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\DayCycle.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\RigidBodyAffector.cs" />
+    <Compile Include="Assets\Scripts\Gizmos\OriginDisplayGizmo.cs" />
     <Compile Include="Assets\Scripts\Movement.cs" />
     <Compile Include="Assets\Scripts\DataDirectory.cs" />
     <Compile Include="Assets\Scripts\Object Management\DestroyObject.cs" />
@@ -74,7 +75,8 @@
     <Compile Include="Assets\Scripts\Physics\Drag.cs" />
     <Compile Include="Assets\Resources\Data\BuildData.cs" />
     <Compile Include="Assets\Scripts\Object Management\Preview.cs" />
-    <Compile Include="Assets\Scripts\Gizmos\OriginDisplayGizmo.cs" />
+    <Compile Include="Assets\Scripts\CharacterMovement.cs" />
+    <Compile Include="Assets\Scripts\Physics\CharacterGravity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\TestShader.shader" />

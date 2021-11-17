@@ -4,8 +4,24 @@ using UnityEngine;
 
 public class DestroyObject : MonoBehaviour
 {
+    [SerializeField] private bool doesDestroyParent = false;
+
     public void DeleteObject(GameObject anchor, Vector3 position)
     {
-        Destroy(anchor);
+        if (doesDestroyParent)
+        {
+            if (anchor.transform.parent == null)
+            {
+                Destroy(anchor);
+            }
+            else
+            {
+                Destroy(anchor.transform.parent.gameObject);
+            }
+        }
+        else
+        {
+            Destroy(anchor);
+        }
     }
 }

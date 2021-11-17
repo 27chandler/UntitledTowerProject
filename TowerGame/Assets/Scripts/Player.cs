@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private Movement movement;
-    private Gravity gravity;
-    private Drag drag;
+    private CharacterMovement movement;
+    private CharacterGravity gravity;
     [SerializeField] private Rotation rotation;
     [SerializeField] private Selector buildSelector;
     [SerializeField] private Selector buildStartpointSelector;
@@ -15,7 +14,10 @@ public class Player : MonoBehaviour
     [SerializeField] private CreateObject objectCreator;
     [SerializeField] private Preview objectPreview;
 
+    [Space]
+
     [SerializeField] private bool canPlaceObject = true;
+    [SerializeField] private bool canDragPlaceObjects = false;
 
     public bool CanPlaceObject { get => canPlaceObject; set => canPlaceObject = value; }
 
@@ -26,10 +28,8 @@ public class Player : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        movement = GetComponent<Movement>();
-        gravity = GetComponent<Gravity>();
-        drag = GetComponent<Drag>();
-        rotation.SetRigidbody(GetComponent<Rigidbody>());
+        movement = GetComponent<CharacterMovement>();
+        gravity = GetComponent<CharacterGravity>();
     }
 
     // Update is called once per frame
@@ -37,13 +37,15 @@ public class Player : MonoBehaviour
     {
         movement.RunInput();
         gravity.DoFall();
-        drag.DoDrag();
         rotation.Rotate();
 
         if (canPlaceObject)
         {
-            if (Input.GetButtonDown("Create"))
-                buildStartpointSelector.SelectObject();
+            if (canDragPlaceObjects)
+            {
+                if (Input.GetButtonDown("Create"))
+                    buildStartpointSelector.SelectObject();
+            }
             if (Input.GetButtonUp("Create"))
                 buildSelector.SelectObject();
         }

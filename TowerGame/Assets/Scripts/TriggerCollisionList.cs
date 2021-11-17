@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TriggerCollisionList : MonoBehaviour
 {
-    private List<Collider> collisionList = new List<Collider>();
+    [SerializeField] private List<Collider> collisionList = new List<Collider>();
 
     private void OnTriggerEnter(Collider other)
     {
