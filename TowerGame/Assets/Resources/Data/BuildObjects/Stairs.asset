@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Stairs
   m_EditorClassIdentifier: 
   prefab: {fileID: 1117821433954053091, guid: 839fca36a616e8e4f95d6830fb43cf1e, type: 3}
-  offset: {x: 0.5, y: 0, z: 0.5}
+  offset: {x: 0.5, y: 1, z: 0.5}

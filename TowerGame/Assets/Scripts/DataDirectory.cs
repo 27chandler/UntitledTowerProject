@@ -11,7 +11,7 @@ public class DataDirectory : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        BuildData[] loaded_objects = Resources.LoadAll<BuildData>("Data");
+        BuildData[] loaded_objects = Resources.LoadAll<BuildData>("Data/BuildObjects");
 
         foreach (BuildData obj in loaded_objects)
         {
