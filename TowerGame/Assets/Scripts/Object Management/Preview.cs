@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class Preview : MonoBehaviour
 {
-    [SerializeField] private GameObject previewObject;
+    [Header("Materials")]
     [SerializeField] private Material previewMat;
+    [SerializeField] private Material invalidMat;
+
+    [SerializeField] private GameObject previewObject;
     [SerializeField] private DataDirectory directory;
     [SerializeField] private Player player;
+    [SerializeField] private Inventory inventory;
     [SerializeField] private Vector3 previewScale = new Vector3(0.9f, 0.9f, 0.9f);
     private Transform preview;
     private Quaternion previewRotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
@@ -54,12 +58,46 @@ public class Preview : MonoBehaviour
             preview.rotation = previewRotation;
 
             ChangeScale();
-            SetAllMaterials(preview, previewMat);
+
+            Material current_mat;
+            ValidCheck(out current_mat);
+            SetAllMaterials(preview, current_mat);
+
             UpdateFreeSpaceChecker();
         }
         IsSpaceFreeCheck();
 
         preview.position = position - directory.GetSelectedObject().offset;
+    }
+
+    private bool ValidCheck (out Material mat)
+    {
+        bool is_valid = true;
+
+        BuildData selected_obj = directory.GetSelectedObject();
+
+        foreach (var cost in selected_obj.neededResources)
+        {
+            int inventory_amount = inventory.FindAmount(cost.item.name);
+
+            if (cost.amount > inventory_amount)
+            {
+                is_valid = false;
+                break;
+            }
+        }
+
+
+        if (is_valid)
+        {
+            mat = previewMat;
+            return true;
+        }
+        else
+        {
+            mat = invalidMat;
+            return false;
+        }
     }
 
     private void ChangeScale()

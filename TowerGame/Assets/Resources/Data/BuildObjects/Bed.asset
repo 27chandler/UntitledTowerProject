@@ -14,3 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 2544823599144470212, guid: 2cabae9c958e5574bbd9f39cb8112340, type: 3}
   offset: {x: 0.5, y: 1, z: 0.5}
+  neededResources:
+  - item: {fileID: 11400000, guid: 5c4331bce38794348a2987b28bb565c9, type: 2}
+    amount: 3
+  - item: {fileID: 11400000, guid: 7a50b9e59f10e2a4ea9e2d011e87731b, type: 2}
+    amount: 4

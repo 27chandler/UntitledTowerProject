@@ -8,6 +8,8 @@ public class DataDirectory : MonoBehaviour
     [SerializeField] private List<BuildData> buildObjects = new List<BuildData>();
     [SerializeField] private UnityEvent changeSelectionEvent;
     [SerializeField] private int selectionIndex = 0;
+
+    public int SelectionIndex { get => selectionIndex; set => selectionIndex = value; }
     // Start is called before the first frame update
     void Start()
     {
