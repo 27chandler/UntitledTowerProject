@@ -14,3 +14,11 @@ TowerGame/UIElementsSchema/
 TowerGame/ProjectSettings/ProjectVersion.txt
 
 TowerGame/Unity.CollabProxy.Editor.csproj
+
+TowerGame/Assembly-CSharp-Editor.csproj
+
+TowerGame/Assembly-CSharp.csproj
+
+TowerGame/Assembly-CSharp.Player.csproj
+
+TowerGame/TowerGame.sln
