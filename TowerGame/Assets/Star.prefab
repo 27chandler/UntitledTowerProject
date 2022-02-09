@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7679846111230798007}
   - component: {fileID: 7679846111230798006}
+  - component: {fileID: 3325634755341719992}
   m_Layer: 0
   m_Name: Star
   m_TagString: Untagged
@@ -44,7 +45,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 100000
-  m_Range: 2.92
+  m_Range: 3
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -93,3 +94,25 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &3325634755341719992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7679846111230798001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6c19fdffad2b0042b657ae030493554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  starTypes:
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 0.9385293, b: 0.6289308, a: 1}
+  - {r: 1, g: 0.7704402, b: 0.7704402, a: 1}
+  - {r: 0.72447896, g: 0.70440245, b: 1, a: 1}
+  - {r: 1, g: 0.7232704, b: 0.90353405, a: 1}
+  maxIntensity: 2
+  minIntensity: 1
+  flickerTime: 25
+  flickerTransition: 10
