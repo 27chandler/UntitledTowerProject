@@ -6,6 +6,11 @@ public class DestroyObject : MonoBehaviour
 {
     [SerializeField] private bool doesDestroyParent = false;
 
+    public void DeleteObject(GameObject anchor, Vector3 position, BuildData data)
+    {
+        DeleteObject(anchor, position);
+    }
+
     public void DeleteObject(GameObject anchor, Vector3 position)
     {
         if (doesDestroyParent)

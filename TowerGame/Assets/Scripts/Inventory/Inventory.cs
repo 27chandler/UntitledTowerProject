@@ -49,4 +49,20 @@ public class Inventory : MonoBehaviour
             return 0;
         }
     }
+
+    public void ConsumeResources(GameObject anchor, Vector3 position, BuildData data)
+    {
+        foreach (var item in data.neededResources)
+        {
+            items[item.item.name].amount -= item.amount;
+        }
+    }
+
+    public void AddResources(GameObject anchor, Vector3 position, BuildData data)
+    {
+        foreach (var item in data.neededResources)
+        {
+            items[item.item.name].amount += item.amount;
+        }
+    }
 }

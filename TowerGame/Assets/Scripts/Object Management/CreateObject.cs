@@ -9,6 +9,12 @@ public class CreateObject : MonoBehaviour
     private bool isSingle = true;
     private Vector3 startPosition; // Starting point for a drag selection
     private Quaternion objectRotation = Quaternion.Euler(0.0f,0.0f,0.0f);
+
+    public void PlaceObject(GameObject anchor, Vector3 position, BuildData data)
+    {
+        PlaceObject(anchor, position);
+    }
+
     public void PlaceObject(GameObject anchor, Vector3 position)
     {
         if (isSingle)
@@ -71,11 +77,20 @@ public class CreateObject : MonoBehaviour
             isSingle = true;
         }
     }
+    public void SetStart(GameObject anchor, Vector3 position, BuildData data)
+    {
+        SetStart(anchor, position);
+    }
 
     public void SetStart(GameObject anchor, Vector3 position)
     {
         startPosition = position;
         isSingle = false;
+    }
+
+    private void Create(GameObject anchor, Vector3 position, BuildData data)
+    {
+        Create(anchor, position);
     }
 
     private void Create(GameObject anchor, Vector3 position)

@@ -11,7 +11,7 @@ public class Selector : MonoBehaviour
     [Space]
     [SerializeField] private GameObject selectedObject;
     [SerializeField] private DataDirectory directory;
-    [SerializeField] private UnityEvent<GameObject,Vector3> activationEvent;
+    [SerializeField] private UnityEvent<GameObject,Vector3,BuildData> activationEvent;
     [SerializeField] private UnityEvent deactivationEvent;
 
     private bool isSomethingSelected = false;
@@ -38,7 +38,9 @@ public class Selector : MonoBehaviour
             select_position.z = Mathf.Ceil(select_position.z)/* - WorldData.GridOffset*/;
 
             selectedObject = hit.collider.gameObject;
-            activationEvent?.Invoke(selectedObject, select_position);
+            GrabObjectData(out objectData);
+
+            activationEvent?.Invoke(selectedObject, select_position, objectData);
 
         }
         else
@@ -59,6 +61,20 @@ public class Selector : MonoBehaviour
         {
             isSomethingSelected = false;
             deactivationEvent?.Invoke();
+            return false;
+        }
+    }
+
+    private bool GrabObjectData(out BuildData data)
+    {
+        data = directory.GetSelectedObject();
+
+        if (data != null)
+        {
+            return true;
+        }
+        else
+        {
             return false;
         }
     }

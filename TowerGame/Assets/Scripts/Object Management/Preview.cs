@@ -22,6 +22,11 @@ public class Preview : MonoBehaviour
         previewObject.transform.rotation = previewRotation;
     }
 
+    public void ShowPreview(GameObject anchor, Vector3 position, BuildData data)
+    {
+        ShowPreview(anchor, position);
+    }
+
     public void ShowPreview(GameObject anchor, Vector3 position)
     {
         if (preview != null)
@@ -48,6 +53,11 @@ public class Preview : MonoBehaviour
         }
     }
 
+    public void SetPosition(GameObject anchor, Vector3 position, BuildData data)
+    {
+        SetPosition(anchor, position);
+    }
+
     public void SetPosition(GameObject anchor, Vector3 position)
     {
         if (preview == null)
@@ -62,6 +72,7 @@ public class Preview : MonoBehaviour
             Material current_mat;
             ValidCheck(out current_mat);
             SetAllMaterials(preview, current_mat);
+            DisableComponents(preview.gameObject);
 
             UpdateFreeSpaceChecker();
         }
@@ -145,6 +156,15 @@ public class Preview : MonoBehaviour
         }
     }
 
+    private void DisableComponents(GameObject obj)
+    {
+        MonoBehaviour[] monos = obj.GetComponentsInChildren<MonoBehaviour>();
+        foreach (MonoBehaviour mono in monos)
+        {
+            mono.enabled = false;
+        }
+    }
+
     private void IsSpaceFreeCheck()
     {
         bool is_space_clear = true;
@@ -174,7 +194,9 @@ public class Preview : MonoBehaviour
 
         previewObject = directory.GetSelectedObject().prefab;
         if (preview != null)
+        {
             Destroy(preview.gameObject);
+        }
 
         IsSpaceFreeCheck();
     }
