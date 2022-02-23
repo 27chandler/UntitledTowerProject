@@ -6,6 +6,14 @@ public static class UnlockSystem : object
 {
     public static List<Unlockable> unlocks = new List<Unlockable>();
 
+    public static void CheckUnlocks()
+    {
+        foreach (var unlock in unlocks)
+        {
+            unlock.CheckUnlockRequirements();
+        }
+    }
+
     public static void AddUnlock(Unlockable unlock)
     {
         unlocks.Add(unlock);

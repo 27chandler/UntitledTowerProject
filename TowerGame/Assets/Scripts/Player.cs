@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public enum INTERACTION_STATE
+    {
+        DEFAULT,
+        BUILD
+    }
+
     private CharacterMovement movement;
     private CharacterGravity gravity;
     [SerializeField] private Rotation rotation;
@@ -13,9 +19,11 @@ public class Player : MonoBehaviour
     [SerializeField] private Selector previewSelector;
     [SerializeField] private CreateObject objectCreator;
     [SerializeField] private Preview objectPreview;
+    [SerializeField] private ObjectClicker objectClicker;
 
     [Space]
 
+    [SerializeField] private INTERACTION_STATE mode = INTERACTION_STATE.DEFAULT;
     [SerializeField] private bool canPlaceObject = true;
     [SerializeField] private bool canDragPlaceObjects = false;
 
@@ -39,15 +47,48 @@ public class Player : MonoBehaviour
         gravity.DoFall();
         rotation.Rotate();
 
+        if (Input.GetButtonDown("SwapMode"))
+        {
+            mode++;
+            if (mode > INTERACTION_STATE.BUILD)
+            {
+                mode = INTERACTION_STATE.DEFAULT;
+            }
+        }
+
+        if (mode == INTERACTION_STATE.DEFAULT)
+        {
+            DefaultMode();
+        }
+        else if (mode == INTERACTION_STATE.BUILD)
+        {
+            BuildMode();
+        }
+    }
+
+    private void DefaultMode()
+    {
+        if (Input.GetButtonDown("Select"))
+        {
+            objectClicker.Click();
+        }
+    }
+
+    private void BuildMode()
+    {
         if (canPlaceObject)
         {
             if (canDragPlaceObjects)
             {
-                if (Input.GetButtonDown("Create"))
+                if (Input.GetButtonDown("Select"))
+                {
                     buildStartpointSelector.SelectObject();
+                }
             }
-            if (Input.GetButtonUp("Create"))
+            if (Input.GetButtonUp("Select"))
+            {
                 buildSelector.SelectObject();
+            }
         }
 
 

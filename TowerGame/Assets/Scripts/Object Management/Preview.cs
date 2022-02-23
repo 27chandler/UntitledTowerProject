@@ -67,18 +67,18 @@ public class Preview : MonoBehaviour
             preview = Instantiate(previewObject).transform;
             preview.rotation = previewRotation;
 
-            ChangeScale();
+            //ChangeScale();
 
             Material current_mat;
             ValidCheck(out current_mat);
-            SetAllMaterials(preview, current_mat);
-            DisableComponents(preview.gameObject);
+            //SetAllMaterials(preview, current_mat);
+            //DisableComponents(preview.gameObject);
 
             UpdateFreeSpaceChecker();
         }
         IsSpaceFreeCheck();
 
-        preview.position = position - directory.GetSelectedObject().offset;
+        preview.position = position - new Vector3(0.5f,0.5f,0.5f);
     }
 
     private bool ValidCheck (out Material mat)
@@ -111,21 +111,21 @@ public class Preview : MonoBehaviour
         }
     }
 
-    private void ChangeScale()
-    {
-        Transform[] children = preview.GetComponentsInChildren<Transform>();
+    //private void ChangeScale()
+    //{
+    //    Transform[] children = preview.GetComponentsInChildren<Transform>();
 
-        foreach (var child in children)
-        {
-            Vector3 new_scale = child.localScale;
-            new_scale.x *= previewScale.x;
-            new_scale.y *= previewScale.y;
-            new_scale.z *= previewScale.z;
+    //    foreach (var child in children)
+    //    {
+    //        Vector3 new_scale = child.localScale;
+    //        new_scale.x *= previewScale.x;
+    //        new_scale.y *= previewScale.y;
+    //        new_scale.z *= previewScale.z;
 
-            child.localScale = new_scale;
-        }
+    //        child.localScale = new_scale;
+    //    }
 
-    }
+    //}
 
     private void UpdateFreeSpaceChecker()
     {
@@ -139,31 +139,31 @@ public class Preview : MonoBehaviour
         }
     }
 
-    private void SetAllMaterials(Transform target, Material mat)
-    {
-        MeshRenderer[] meshes = target.GetComponentsInChildren<MeshRenderer>();
+    //private void SetAllMaterials(Transform target, Material mat)
+    //{
+    //    MeshRenderer[] meshes = target.GetComponentsInChildren<MeshRenderer>();
 
-        foreach (MeshRenderer mesh in meshes)
-        {
-            Material[] mats = mesh.materials;
+    //    foreach (MeshRenderer mesh in meshes)
+    //    {
+    //        Material[] mats = mesh.materials;
 
-            for (int i = 0; i < mats.Length; i++)
-            {
-                mats[i] = mat;
-            }
+    //        for (int i = 0; i < mats.Length; i++)
+    //        {
+    //            mats[i] = mat;
+    //        }
 
-            mesh.materials = mats;
-        }
-    }
+    //        mesh.materials = mats;
+    //    }
+    //}
 
-    private void DisableComponents(GameObject obj)
-    {
-        MonoBehaviour[] monos = obj.GetComponentsInChildren<MonoBehaviour>();
-        foreach (MonoBehaviour mono in monos)
-        {
-            mono.enabled = false;
-        }
-    }
+    //private void DisableComponents(GameObject obj)
+    //{
+    //    MonoBehaviour[] monos = obj.GetComponentsInChildren<MonoBehaviour>();
+    //    foreach (MonoBehaviour mono in monos)
+    //    {
+    //        mono.enabled = false;
+    //    }
+    //}
 
     private void IsSpaceFreeCheck()
     {
@@ -192,7 +192,7 @@ public class Preview : MonoBehaviour
     {
         previewRotation = previewObject.transform.rotation;
 
-        previewObject = directory.GetSelectedObject().prefab;
+        previewObject = directory.GetSelectedObject().preview;
         if (preview != null)
         {
             Destroy(preview.gameObject);

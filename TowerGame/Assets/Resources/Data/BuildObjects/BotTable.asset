@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 236cfb04fe220fe4ca0b97fa83ad982f, type: 3}
   m_Name: BotTable
   m_EditorClassIdentifier: 
+  identifier: BotCrafter
   prefab: {fileID: 2158439972298747860, guid: 4764c11374d093944ac80655f410fe86, type: 3}
+  preview: {fileID: 8466613189928496308, guid: c8708147b1812d84bb82b2d67260213f, type: 3}
   offset: {x: 0.5, y: 0.5, z: 0.5}
   neededResources:
   - item: {fileID: 11400000, guid: eae1d2f7e8661334e9a04004788c9352, type: 2}

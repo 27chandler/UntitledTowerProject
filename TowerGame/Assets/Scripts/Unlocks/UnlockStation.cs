@@ -13,6 +13,7 @@ public class UnlockStation : MonoBehaviour
     [SerializeField] private float updateInterval = 10.0f;
     [ReadOnly] [SerializeField] public List<UnlockSatellite> satellites = new List<UnlockSatellite>();
     [ReadOnly] [SerializeField] private List<string> satelliteTypes = new List<string>();
+    [ReadOnly] [SerializeField] private List<string> completedUnlocks = new List<string>();
     private IEnumerator SearchRoutine;
 
     public string Identifier { get => identifier; set => identifier = value; }
@@ -26,6 +27,19 @@ public class UnlockStation : MonoBehaviour
         StartCoroutine(SearchRoutine);
     }
 
+    public void UnlockNow(string unlock_name)
+    {
+        if (!completedUnlocks.Contains(unlock_name))
+        {
+            completedUnlocks.Add(unlock_name);
+        }
+    }
+
+    public bool IsUnlocked(string unlock_name)
+    {
+        return completedUnlocks.Contains(unlock_name);
+    }
+
     private IEnumerator SatelliteSearch()
     {
         while(SearchRoutine != null)
@@ -36,7 +50,7 @@ public class UnlockStation : MonoBehaviour
 
             foreach(var result in results)
             {
-                UnlockSatellite satellite = result.GetComponent<UnlockSatellite>();
+                UnlockSatellite satellite = result.GetComponentInParent<UnlockSatellite>();
 
                 if ((satellite != null) && (!satellites.Contains(satellite)))
                 {

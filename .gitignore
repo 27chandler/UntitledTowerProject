@@ -22,3 +22,5 @@ TowerGame/Assembly-CSharp.csproj
 TowerGame/Assembly-CSharp.Player.csproj
 
 TowerGame/TowerGame.sln
+
+*.csproj

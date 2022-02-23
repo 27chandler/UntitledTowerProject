@@ -5,6 +5,7 @@ using System;
 
 public class Unlockable : MonoBehaviour
 {
+    [SerializeField] private string unlockName;
     [Header("Subscribed stations:")]
     [ReadOnly][SerializeField] private List<UnlockStation> stations = new List<UnlockStation>();
     [ReadOnly] [SerializeField] private bool isUnlocked = false;
@@ -54,7 +55,7 @@ public class Unlockable : MonoBehaviour
         }
     }
 
-    private void CheckUnlockRequirements()
+    public void CheckUnlockRequirements()
     {
         PurgeInvalidSubscribers();
 
@@ -88,6 +89,7 @@ public class Unlockable : MonoBehaviour
             if (is_unlocked)
             {
                 isUnlocked = true;
+                station.UnlockNow(unlockName);
                 return;
             }
         }

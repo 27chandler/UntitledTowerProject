@@ -55,8 +55,10 @@ MonoBehaviour:
   buildStartpointSelector: {fileID: 1543864468746929691}
   deleteSelector: {fileID: 1457646330}
   previewSelector: {fileID: 2968299846308238147}
-  objectCreator: {fileID: 7807816000159498775}
+  objectCreator: {fileID: 1398567345716768792}
   objectPreview: {fileID: 8986960861601192741}
+  objectClicker: {fileID: 24771797567105840}
+  mode: 0
   canPlaceObject: 1
   canDragPlaceObjects: 0
 --- !u!114 &4596048212674606735
@@ -102,7 +104,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 7807816000159498775}
+      - m_Target: {fileID: 1398567345716768792}
         m_TargetAssemblyTypeName: CreateObject, Assembly-CSharp
         m_MethodName: RefreshSelection
         m_Mode: 1
@@ -174,6 +176,7 @@ GameObject:
   - component: {fileID: 963194229}
   - component: {fileID: 754406922}
   - component: {fileID: 754406921}
+  - component: {fileID: 24771797567105840}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -306,6 +309,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &24771797567105840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352369814746120767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b8facb04db81dc49839b1e41d9b4a30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mask:
+    serializedVersion: 2
+    m_Bits: 192
+  clickDistance: 5
 --- !u!1 &2607838374981075442
 GameObject:
   m_ObjectHideFlags: 0
@@ -634,7 +653,7 @@ MonoBehaviour:
   activationEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7807816000159498775}
+      - m_Target: {fileID: 1398567345716768792}
         m_TargetAssemblyTypeName: CreateObject, Assembly-CSharp
         m_MethodName: SetStart
         m_Mode: 0
@@ -658,8 +677,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7142954239399586977}
-  - component: {fileID: 1457646329}
   - component: {fileID: 1457646330}
+  - component: {fileID: 1883812471}
   m_Layer: 0
   m_Name: Destroy Selector
   m_TagString: Untagged
@@ -681,19 +700,6 @@ Transform:
   m_Father: {fileID: 1381884194906452818}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1457646329
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6737429009254113465}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8a0c6622cb38144dbc2a589e2a2be91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  doesDestroyParent: 1
 --- !u!114 &1457646330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -716,8 +722,8 @@ MonoBehaviour:
   activationEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1457646329}
-        m_TargetAssemblyTypeName: DestroyObject, Assembly-CSharp
+      - m_Target: {fileID: 1883812471}
+        m_TargetAssemblyTypeName: PlayerDestroyObject, Assembly-CSharp
         m_MethodName: DeleteObject
         m_Mode: 0
         m_Arguments:
@@ -731,6 +737,21 @@ MonoBehaviour:
   deactivationEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1883812471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6737429009254113465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79d20c4181767ab40a513bec14de4cd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doesDestroyParent: 1
+  inventory: {fileID: 1780438211}
+  directory: {fileID: 1211412196}
 --- !u!1 &8299172496651961749
 GameObject:
   m_ObjectHideFlags: 0
@@ -741,7 +762,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1972585348563040645}
   - component: {fileID: 5272924537340479792}
-  - component: {fileID: 7807816000159498775}
+  - component: {fileID: 1398567345716768792}
   m_Layer: 0
   m_Name: Build End
   m_TagString: Untagged
@@ -785,8 +806,8 @@ MonoBehaviour:
   activationEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7807816000159498775}
-        m_TargetAssemblyTypeName: CreateObject, Assembly-CSharp
+      - m_Target: {fileID: 1398567345716768792}
+        m_TargetAssemblyTypeName: PlayerBuildObject, Assembly-CSharp
         m_MethodName: PlaceObject
         m_Mode: 0
         m_Arguments:
@@ -800,7 +821,7 @@ MonoBehaviour:
   deactivationEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &7807816000159498775
+--- !u!114 &1398567345716768792
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -809,11 +830,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8299172496651961749}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6677981682af1f24ea863a35d8022c3f, type: 3}
+  m_Script: {fileID: 11500000, guid: c33a18073b430284783ab6511cdff1e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedObject: {fileID: 7210973601539732521, guid: 6fe3bb2b96b1d7c428feca6f3e751657, type: 3}
+  selectedObject: {fileID: 0}
   directory: {fileID: 1211412196}
+  playerInventory: {fileID: 1780438211}
 --- !u!1 &8803147846131196551
 GameObject:
   m_ObjectHideFlags: 0

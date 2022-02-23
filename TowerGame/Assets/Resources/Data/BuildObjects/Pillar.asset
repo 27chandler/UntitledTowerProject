@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 236cfb04fe220fe4ca0b97fa83ad982f, type: 3}
   m_Name: Pillar
   m_EditorClassIdentifier: 
+  identifier: Pillar
   prefab: {fileID: 7682930681949802007, guid: 977b256524ecada45858c16a67e5a0bf, type: 3}
+  preview: {fileID: 5574962826049885136, guid: 38a0534b2e4fed440875985b10360657, type: 3}
   offset: {x: 0.5, y: 0.5, z: 0.5}
   neededResources:
   - item: {fileID: 11400000, guid: eae1d2f7e8661334e9a04004788c9352, type: 2}

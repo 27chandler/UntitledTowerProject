@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 236cfb04fe220fe4ca0b97fa83ad982f, type: 3}
   m_Name: Bed
   m_EditorClassIdentifier: 
+  identifier: Bed
   prefab: {fileID: 2544823599144470212, guid: 2cabae9c958e5574bbd9f39cb8112340, type: 3}
+  preview: {fileID: 526642553419287670, guid: f04cd0045dca15247b834d61b26510a0, type: 3}
   offset: {x: 0.5, y: 1, z: 0.5}
   neededResources:
   - item: {fileID: 11400000, guid: 5c4331bce38794348a2987b28bb565c9, type: 2}

@@ -56,13 +56,29 @@ public class Inventory : MonoBehaviour
         {
             items[item.item.name].amount -= item.amount;
         }
+        RefreshUI();
     }
 
+    public void AddResources(string name, int amount, bool doRefresh = false)
+    {
+        items[name].amount += amount;
+
+        if (doRefresh)
+        {
+            RefreshUI();
+        }
+    }
     public void AddResources(GameObject anchor, Vector3 position, BuildData data)
     {
         foreach (var item in data.neededResources)
         {
             items[item.item.name].amount += item.amount;
         }
+        RefreshUI();
+    }
+
+    public void RefreshUI()
+    {
+        inventoryUI.RefreshUI();
     }
 }

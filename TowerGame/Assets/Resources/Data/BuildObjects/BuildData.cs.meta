@@ -3,7 +3,9 @@ guid: 236cfb04fe220fe4ca0b97fa83ad982f
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - prefab: {instanceID: 0}
+  - preview: {fileID: 1788419644777317795, guid: cf2da64b72b59fd4bb5f47155ecbf661, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

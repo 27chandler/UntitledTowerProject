@@ -10,12 +10,12 @@ public class CreateObject : MonoBehaviour
     private Vector3 startPosition; // Starting point for a drag selection
     private Quaternion objectRotation = Quaternion.Euler(0.0f,0.0f,0.0f);
 
-    public void PlaceObject(GameObject anchor, Vector3 position, BuildData data)
+    public virtual void PlaceObject(GameObject anchor, Vector3 position, BuildData data)
     {
         PlaceObject(anchor, position);
     }
 
-    public void PlaceObject(GameObject anchor, Vector3 position)
+    public virtual void PlaceObject(GameObject anchor, Vector3 position)
     {
         if (isSingle)
             Create(anchor, position);
@@ -97,6 +97,8 @@ public class CreateObject : MonoBehaviour
     {
         GameObject new_object = Instantiate(selectedObject, position - directory.GetSelectedObject().offset, new Quaternion());
         new_object.transform.RotateAround(position - directory.GetSelectedObject().offset, Vector3.up, objectRotation.eulerAngles.y);
+        ObjectMeta new_meta = new_object.AddComponent<ObjectMeta>();
+        new_meta.identifier = directory.GetSelectedObject().identifier;
     }
 
     public void RefreshSelection()

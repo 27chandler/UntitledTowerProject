@@ -44,6 +44,16 @@ public class DataDirectory : MonoBehaviour
         return buildObjects[selectionIndex];
     }
 
+    public BuildData FindObjectData(string id)
+    {
+        return buildObjects.Find(x => x.identifier == id);
+    }
+
+    public GameObject GetSelectedObjectPreview()
+    {
+        return buildObjects[selectionIndex].preview;
+    }
+
     private void ClampSelection()
     {
         selectionIndex = Mathf.Clamp(selectionIndex,0, buildObjects.Count - 1);
