@@ -77,6 +77,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tags:
   - Decoration
+  - Nature
 --- !u!1001 &8712846987930665614
 PrefabInstance:
   m_ObjectHideFlags: 0

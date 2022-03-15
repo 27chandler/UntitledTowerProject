@@ -37,6 +37,7 @@ public class WorldSpaceButton : MonoBehaviour, IClickable
     public void LeftClicked()
     {
         image.color = pressedColour;
+        Debug.Log("Clicked");
     }
 
     public void Hover()

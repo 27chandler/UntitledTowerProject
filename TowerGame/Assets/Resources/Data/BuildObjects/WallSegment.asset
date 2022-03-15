@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 236cfb04fe220fe4ca0b97fa83ad982f, type: 3}
+  m_Name: WallSegment
+  m_EditorClassIdentifier: 
+  identifier: WallSegment
+  prefab: {fileID: 5030367002444631585, guid: 189a324e8160433458a245478f56e384, type: 3}
+  preview: {fileID: 8737386742986793413, guid: b1e29d1df68c83146b231e3443134fc8, type: 3}
+  offset: {x: 0.5, y: 0.5, z: 0.5}
+  neededResources:
+  - item: {fileID: 11400000, guid: eae1d2f7e8661334e9a04004788c9352, type: 2}
+    amount: 5

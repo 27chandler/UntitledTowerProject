@@ -143,6 +143,12 @@ public class DayCycle : MonoBehaviour
     {
         return cycles[ident].worldCycle[index].onEnter;
     }
+
+    public static UnityEvent Subscribe(string ident, string segment_name)
+    {
+        int index = cycles[ident].worldCycle.FindIndex(x => x.segmentName == segment_name);
+        return cycles[ident].worldCycle[index].onEnter;
+    }
 }
 
 [Serializable]

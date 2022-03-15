@@ -31,12 +31,13 @@ public class Preview : MonoBehaviour
     {
         if (preview != null)
         {
-            MeshRenderer[] meshes = preview.GetComponentsInChildren<MeshRenderer>();
+            preview.gameObject.SetActive(true);
+            //MeshRenderer[] meshes = preview.GetComponentsInChildren<MeshRenderer>();
 
-            foreach (var mesh in meshes)
-            {
-                mesh.enabled = true;
-            }
+            //foreach (var mesh in meshes)
+            //{
+            //    mesh.enabled = true;
+            //}
         }
     }
 
@@ -44,12 +45,13 @@ public class Preview : MonoBehaviour
     {
         if (preview != null)
         {
-            MeshRenderer[] meshes = preview.GetComponentsInChildren<MeshRenderer>();
+            preview.gameObject.SetActive(false);
+            //MeshRenderer[] meshes = preview.GetComponentsInChildren<MeshRenderer>();
 
-            foreach (var mesh in meshes)
-            {
-                mesh.enabled = false;
-            }
+            //foreach (var mesh in meshes)
+            //{
+            //    mesh.enabled = false;
+            //}
         }
     }
 

@@ -5,11 +5,14 @@ using UnityEngine.Events;
 
 public class DataDirectory : MonoBehaviour
 {
-    [SerializeField] private List<BuildData> buildObjects = new List<BuildData>();
+    [SerializeField] public List<BuildData> buildObjects = new List<BuildData>();
     [SerializeField] private UnityEvent changeSelectionEvent;
     [SerializeField] private int selectionIndex = 0;
+    private bool isInited = false;
 
     public int SelectionIndex { get => selectionIndex; set => selectionIndex = value; }
+    public bool IsInited { get => isInited; set => isInited = value; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +22,8 @@ public class DataDirectory : MonoBehaviour
         {
             buildObjects.Add(obj);
         }
+
+        isInited = true;
     }
 
     // Update is called once per frame

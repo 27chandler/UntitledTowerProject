@@ -30,9 +30,13 @@ public class Selector : MonoBehaviour
 
             Vector3 select_position;
             if (isSelectingAdjacent)
-                select_position = hit.point - (transform.forward * 0.1f);           
+            {
+                select_position = hit.point + (hit.normal * 0.999f);
+            }
             else
+            {
                 select_position = hit.point + (transform.forward * 0.1f);
+            }
             select_position.x = Mathf.Ceil(select_position.x)/* - WorldData.GridOffset*/;
             select_position.y = Mathf.Ceil(select_position.y)/* - WorldData.GridOffset*/;
             select_position.z = Mathf.Ceil(select_position.z)/* - WorldData.GridOffset*/;

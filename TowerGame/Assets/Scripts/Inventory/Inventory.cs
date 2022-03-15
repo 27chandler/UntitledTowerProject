@@ -6,7 +6,7 @@ public class InventorySlot
 {
     public string name;
     public Texture icon;
-    public int amount = 20;
+    public int amount = 200;
 }
 
 public class Inventory : MonoBehaviour

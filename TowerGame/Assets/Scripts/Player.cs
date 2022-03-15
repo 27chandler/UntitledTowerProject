@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
 
     [Space]
 
-    [SerializeField] private INTERACTION_STATE mode = INTERACTION_STATE.DEFAULT;
+    [SerializeField] public INTERACTION_STATE mode = INTERACTION_STATE.DEFAULT;
     [SerializeField] private bool canPlaceObject = true;
     [SerializeField] private bool canDragPlaceObjects = false;
 
@@ -94,10 +94,14 @@ public class Player : MonoBehaviour
 
 
         if (Input.GetButtonDown("Delete"))
+        {
             deleteSelector.SelectObject();
+        }
 
         if (previewSelector.RangeCheck())
+        {
             previewSelector.SelectObject();
+        }
 
         if (Input.GetButtonDown("Rotate"))
         {

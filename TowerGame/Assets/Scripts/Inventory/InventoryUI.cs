@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventoryUI : MonoBehaviour
+public class InventoryUI : UIView
 {
-    [SerializeField] private Transform uiAnchor;
-    [SerializeField] private GameObject uiSlot;
-
     [Header("Modifiers")]
     [SerializeField] private float seperation = 105.0f;
 
@@ -16,13 +13,7 @@ public class InventoryUI : MonoBehaviour
 
     public Inventory Inventory { get => inventory; set => inventory = value; }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        StartCoroutine(SetupUI());
-    }
-
-    private IEnumerator SetupUI()
+    protected override IEnumerator SetupUI()
     {
         int count = 0;
 
