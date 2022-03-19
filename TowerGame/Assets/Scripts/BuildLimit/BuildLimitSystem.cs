@@ -58,7 +58,7 @@ public class BuildLimitSystem : MonoBehaviour
         }
     }
 
-    public static void GenerateNewBounds(BuildBounds bounds)
+    public static void GenerateNewBounds(BuildBounds bounds, out Collider collider)
     {
         GameObject new_zone = Instantiate(staticZoneObject);
         new_zone.transform.position = bounds.transform.position;
@@ -72,5 +72,17 @@ public class BuildLimitSystem : MonoBehaviour
         zone.height = bounds.Height;
         zone.width = bounds.Width;
         zones.Add(zone);
+
+        collider = zone.bounds;
+    }
+
+    public static void RemoveExistingBounds(Collider collider)
+    {
+        Zone found_zone = zones.Find(x => x.bounds == collider);
+        if (found_zone != null)
+        {
+            Destroy(found_zone.bounds.gameObject);
+            zones.Remove(found_zone);
+        }
     }
 }

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: BotTable
   m_EditorClassIdentifier: 
   identifier: BotCrafter
+  isEnabled: 0
   prefab: {fileID: 2158439972298747860, guid: 4764c11374d093944ac80655f410fe86, type: 3}
   preview: {fileID: 8466613189928496308, guid: c8708147b1812d84bb82b2d67260213f, type: 3}
   offset: {x: 0.5, y: 0.5, z: 0.5}

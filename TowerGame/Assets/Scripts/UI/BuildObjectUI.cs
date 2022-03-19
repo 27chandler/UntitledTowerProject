@@ -97,7 +97,7 @@ public class BuildObjectUI : UIView
 
     private void AssignSlotValues(ItemSlot slot, BuildData data, bool is_selected = false)
     {
-        slot.Label.text = data.name;
+        slot.Label.text = data.identifier;
 
         if (is_selected)
         {

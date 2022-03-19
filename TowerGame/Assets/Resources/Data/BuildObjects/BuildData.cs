@@ -7,6 +7,7 @@ using System;
 public class BuildData : ScriptableObject
 {
     [SerializeField] public string identifier;
+    [SerializeField] public bool isEnabled = true;
     [SerializeField] public GameObject prefab;
     [SerializeField] public GameObject preview;
     [SerializeField] public Vector3 offset = new Vector3(0.5f,0.5f,0.5f);

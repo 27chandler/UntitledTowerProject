@@ -15,7 +15,7 @@ MonoBehaviour:
   identifier: Floor2x2
   prefab: {fileID: 5711529760152908437, guid: a258eab675d606048a214cb3e1c650a4, type: 3}
   preview: {fileID: 8334790151809210292, guid: 280e212a692bddc4bba3ba00143778ae, type: 3}
-  offset: {x: 0.5, y: 0.5, z: -0.5}
+  offset: {x: 0.5, y: 0.5, z: 0.5}
   neededResources:
   - item: {fileID: 11400000, guid: eae1d2f7e8661334e9a04004788c9352, type: 2}
     amount: 4

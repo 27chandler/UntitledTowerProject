@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 236cfb04fe220fe4ca0b97fa83ad982f, type: 3}
   m_Name: Wall (3 Tall)
   m_EditorClassIdentifier: 
-  identifier: Wall 3
+  identifier: Single Wall
+  isEnabled: 1
   prefab: {fileID: 3020315875463458165, guid: f9ee2ee63e9de1e40aeaaa5904b1103b, type: 3}
   preview: {fileID: 1788419644777317795, guid: cf2da64b72b59fd4bb5f47155ecbf661, type: 3}
   offset: {x: 0.5, y: 0.5, z: 0.5}

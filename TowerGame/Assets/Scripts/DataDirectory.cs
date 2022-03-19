@@ -20,7 +20,10 @@ public class DataDirectory : MonoBehaviour
 
         foreach (BuildData obj in loaded_objects)
         {
-            buildObjects.Add(obj);
+            if (obj.isEnabled)
+            {
+                buildObjects.Add(obj);
+            }
         }
 
         isInited = true;
