@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a88978878900e334e879fdec685ccde5, type: 3}
-  m_Name: Cotton
+  m_Name: Bamboo
   m_EditorClassIdentifier: 
-  name: Cotton
-  prefab: {fileID: 919132149155446097, guid: c6656badbdfee3644b2dc67cda7c04f1, type: 3}
-  growthSegment: TimeAdvance
-  growthTime: 5
+  name: Bamboo
+  prefab: {fileID: 7678299288461866720, guid: 20ed0a875234a9b49a04292893fced1a, type: 3}
+  growthSegment: Midday
+  growthTime: 20
   harvestResources:
-  - item: {fileID: 11400000, guid: 5c4331bce38794348a2987b28bb565c9, type: 2}
-    amount: 3
+  - item: {fileID: 11400000, guid: 7a50b9e59f10e2a4ea9e2d011e87731b, type: 2}
+    amount: 10

@@ -14,12 +14,14 @@ public class Inventory : MonoBehaviour
     public Dictionary<string, InventorySlot> items = new Dictionary<string, InventorySlot>();
     private string inventoryId;
     [SerializeField] private InventoryUI inventoryUI;
+    public static Inventory globalInventory;
 
     public string InventoryId { get => inventoryId; set => inventoryId = value; }
 
     // Start is called before the first frame update
     void Start()
     {
+        globalInventory = this;
         inventoryUI.Inventory = this;
 
         CreateDefaultItems();

@@ -1706,6 +1706,9 @@ MonoBehaviour:
     onEnter:
       m_PersistentCalls:
         m_Calls: []
+  onNextSegment:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &705507997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2071,7 +2074,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh19366
+  m_Name: pb_Mesh19302
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

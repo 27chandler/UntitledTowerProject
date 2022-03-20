@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlantData : ScriptableObject
 {
     [SerializeField] public string name;
+    [SerializeField] public GameObject prefab;
     [SerializeField] public string growthSegment = "TimeAdvance";
     [SerializeField] public int growthTime = 5;
 
