@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(RawImage))]
 public class WorldSpaceButton : MonoBehaviour, IClickable
@@ -10,6 +11,7 @@ public class WorldSpaceButton : MonoBehaviour, IClickable
     [SerializeField] private Color pressedColour;
     [SerializeField] private Color hoverColour;
     [SerializeField] private float highlightResetTime = 0.2f;
+    [SerializeField] private UnityEvent onClick;
 
     private RawImage image;
     private float highlightTimer = 0.0f;
@@ -37,6 +39,7 @@ public class WorldSpaceButton : MonoBehaviour, IClickable
     public void LeftClicked()
     {
         image.color = pressedColour;
+        onClick.Invoke();
         Debug.Log("Clicked");
     }
 

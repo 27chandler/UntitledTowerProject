@@ -14,6 +14,7 @@ public class DayCycle : MonoBehaviour
     [SerializeField][ReadOnly] private float nextSegmentTime = 0.0f;
     [SerializeField][ReadOnly] private float segmentProgress = 0.0f;
     [SerializeField] private List<DaySegment> worldCycle = new List<DaySegment>();
+    [SerializeField] private UnityEvent onNextSegment;
 
     private int cycleSegmentIndex = 0;
     private int nextCycleSegmentIndex = 1;
@@ -121,6 +122,7 @@ public class DayCycle : MonoBehaviour
 
         sun.eulerAngles = worldCycle[cycleSegmentIndex].startAngle;
         CacheNextValues();
+        onNextSegment.Invoke();
     }
 
     private void CacheNextValues()
@@ -146,6 +148,11 @@ public class DayCycle : MonoBehaviour
 
     public static UnityEvent Subscribe(string ident, string segment_name)
     {
+        if (segment_name == "TimeAdvance")
+        {
+            return cycles[ident].onNextSegment;
+        }
+
         int index = cycles[ident].worldCycle.FindIndex(x => x.segmentName == segment_name);
         return cycles[ident].worldCycle[index].onEnter;
     }
