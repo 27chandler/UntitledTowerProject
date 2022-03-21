@@ -71,7 +71,7 @@ public class Unlockable : MonoBehaviour
                 progress.Add(new_progress);
             }
 
-            foreach (var satellite in station.satellites)
+            foreach (var satellite in station.Satellites)
             {
                 RequirementProgress progress_update = progress.Find(x => satellite.tags.Contains(x.requirement.tag));
                 progress_update.amount++;

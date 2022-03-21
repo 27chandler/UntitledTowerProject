@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class UnlockStation : MonoBehaviour
 {
@@ -11,12 +12,16 @@ public class UnlockStation : MonoBehaviour
     /// for satellites
     /// </summary>
     [SerializeField] private float updateInterval = 10.0f;
-    [ReadOnly] [SerializeField] public List<UnlockSatellite> satellites = new List<UnlockSatellite>();
+    [SerializeField] private UnityEvent onUnlock = new UnityEvent();
+    [SerializeField] private UnityEvent onLock = new UnityEvent();
+    [ReadOnly] [SerializeField] private List<UnlockSatellite> satellites = new List<UnlockSatellite>();
     [ReadOnly] [SerializeField] private List<string> satelliteTypes = new List<string>();
     [ReadOnly] [SerializeField] private List<string> completedUnlocks = new List<string>();
     private IEnumerator SearchRoutine;
+    private bool isUnlocked = false;
 
     public string Identifier { get => identifier; set => identifier = value; }
+    public List<UnlockSatellite> Satellites { get => satellites; set => satellites = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -29,10 +34,12 @@ public class UnlockStation : MonoBehaviour
 
     public void UnlockNow(string unlock_name)
     {
+        isUnlocked = true;
         if (!completedUnlocks.Contains(unlock_name))
         {
             completedUnlocks.Add(unlock_name);
         }
+        onUnlock?.Invoke();
     }
 
     public bool IsUnlocked(string unlock_name)

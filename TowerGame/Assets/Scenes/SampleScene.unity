@@ -2818,6 +2818,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6400957118251924372, guid: a72f3cb840d8e014a8fa041747ca64a4, type: 3}
+      propertyPath: lerpCurve.m_Curve.Array.data[2].time
+      value: 0.5163481
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400957118251924372, guid: a72f3cb840d8e014a8fa041747ca64a4, type: 3}
+      propertyPath: lerpCurve.m_Curve.Array.data[2].value
+      value: 0.89086026
+      objectReference: {fileID: 0}
     - target: {fileID: 7092961718666036385, guid: a72f3cb840d8e014a8fa041747ca64a4, type: 3}
       propertyPath: m_RootOrder
       value: 14
