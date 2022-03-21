@@ -15,7 +15,7 @@ MonoBehaviour:
   name: Bamboo
   prefab: {fileID: 7678299288461866720, guid: 20ed0a875234a9b49a04292893fced1a, type: 3}
   growthSegment: Midday
-  growthTime: 20
+  growthTime: 3
   harvestResources:
   - item: {fileID: 11400000, guid: 7a50b9e59f10e2a4ea9e2d011e87731b, type: 2}
     amount: 10

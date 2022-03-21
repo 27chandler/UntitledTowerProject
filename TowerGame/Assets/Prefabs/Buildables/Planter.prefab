@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8920590651694995831}
   - component: {fileID: 9191504150112988362}
+  - component: {fileID: 7541573538150940786}
   m_Layer: 6
   m_Name: Planter
   m_TagString: Untagged
@@ -45,6 +46,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7541573538150940786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052227028288008906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e83933961953b5749b7168ee829497bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tags:
+  - Nature
+  - Farming
 --- !u!1 &3316248938020307366
 GameObject:
   m_ObjectHideFlags: 0
