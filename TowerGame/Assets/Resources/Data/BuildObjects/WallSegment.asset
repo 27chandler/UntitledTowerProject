@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: WallSegment
   m_EditorClassIdentifier: 
   identifier: WallSegment
+  category: 1
+  isEnabled: 1
   prefab: {fileID: 5030367002444631585, guid: 189a324e8160433458a245478f56e384, type: 3}
   preview: {fileID: 8737386742986793413, guid: b1e29d1df68c83146b231e3443134fc8, type: 3}
   offset: {x: 0.5, y: 0.5, z: 0.5}

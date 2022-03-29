@@ -58,6 +58,11 @@ public class DayCycle : MonoBehaviour
         segmentProgress = left_side / right_side;
     }
 
+    public static string CurrentTime(string ident)
+    {
+        return cycles[ident].worldCycle[cycles[ident].cycleSegmentIndex].segmentName;
+    }
+
     public void SkipTo(string segment_name)
     {
         int start_index = cycleSegmentIndex;

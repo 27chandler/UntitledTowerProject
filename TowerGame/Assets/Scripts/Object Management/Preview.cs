@@ -67,6 +67,7 @@ public class Preview : MonoBehaviour
             RefreshPreview();
 
             preview = Instantiate(previewObject).transform;
+            preview.name = previewObject.name;
             preview.rotation = previewRotation;
 
             //ChangeScale();
@@ -77,6 +78,17 @@ public class Preview : MonoBehaviour
             //DisableComponents(preview.gameObject);
 
             UpdateFreeSpaceChecker();
+        }
+        else
+        {
+            if (previewObject.name != directory.GetSelectedObject().name)
+            {
+                RefreshPreview();
+
+                preview = Instantiate(previewObject).transform;
+                preview.name = previewObject.name;
+                preview.rotation = previewRotation;
+            }
         }
         IsSpaceFreeCheck();
 

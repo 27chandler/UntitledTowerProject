@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: PotPlant
   m_EditorClassIdentifier: 
   identifier: Potted Plant
+  category: 3
+  isEnabled: 1
   prefab: {fileID: 7678299288461866720, guid: 20ed0a875234a9b49a04292893fced1a, type: 3}
   preview: {fileID: 5574962826049885136, guid: 38a0534b2e4fed440875985b10360657, type: 3}
   offset: {x: 0.5, y: 1, z: 0.5}

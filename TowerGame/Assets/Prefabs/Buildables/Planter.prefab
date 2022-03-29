@@ -5149,3 +5149,5 @@ MonoBehaviour:
   plantInfoText: {fileID: 0}
   growthTextPrefix: 'Current Growth Stage: '
   harvestParticles: {fileID: 1533483162921384174}
+  doAutoHarvest: 0
+  autoHarvestSegment: Morning

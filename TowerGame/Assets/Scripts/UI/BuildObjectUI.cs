@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class BuildObjectUI : UIView
 {
-    [SerializeField] private DataDirectory directory;
-
     [Header("Modifiers")]
     [SerializeField] private float seperation = 105.0f;
     [SerializeField] private float scrollPadding = 40.0f;
@@ -20,14 +18,14 @@ public class BuildObjectUI : UIView
     [SerializeField][ReadOnly] private float scrollSpeed = 0.0f;
     [SerializeField] [ReadOnly] private float offset = 0.0f;
     // Start is called before the first frame update
-    protected void Start()
+    protected new void Start()
     {
         base.Start();
         anchorStartPos = uiAnchor.localPosition;
         cachedSelection = directory.SelectionIndex;
     }
 
-    protected void Update()
+    protected new void Update()
     {
         base.Update();
         if (slots.Count > 0)
@@ -73,21 +71,54 @@ public class BuildObjectUI : UIView
             yield return null;
         }
 
+        if (isMultipleTabs)
+        {
+            SetupTabs(count);
+        }
+        else
+        {
+            foreach (var obj in directory.buildObjects)
+            {
+                GameObject new_ui_slot = Instantiate(uiSlot);
+                new_ui_slot.transform.parent = uiAnchor;
+
+                ItemSlot slot = new_ui_slot.GetComponent<ItemSlot>();
+                AssignSlotValues(slot, obj, count == cachedSelection);
+                slot.Index = count;
+
+                slots.Add(slot);
+
+                count++;
+            }
+        }
+
+
+        yield return null;
+    }
+
+    private void SetupTabs(int index)
+    {
+        for (int i = 0; i < System.Enum.GetNames(typeof(BLUEPRINT_CATEGORIES)).Length; i++)
+        {
+            GameObject new_anchor = Instantiate(uiAnchor.gameObject, uiAnchor.position, uiAnchor.localRotation, uiAnchor.parent);
+            uiAnchorTabs.Add(System.Enum.GetNames(typeof(BLUEPRINT_CATEGORIES))[i],new_anchor.transform);
+        }
+
         foreach (var obj in directory.buildObjects)
         {
+            string category = obj.category.ToString();
+
             GameObject new_ui_slot = Instantiate(uiSlot);
-            new_ui_slot.transform.parent = uiAnchor;
+            new_ui_slot.transform.parent = uiAnchorTabs[category];
 
             ItemSlot slot = new_ui_slot.GetComponent<ItemSlot>();
-            AssignSlotValues(slot, obj, count == cachedSelection);
-            slot.Index = count;
+            AssignSlotValues(slot, obj, index == cachedSelection);
+            slot.Index = index;
 
             slots.Add(slot);
 
-            count++;
+            index++;
         }
-
-        yield return null;
     }
 
     private Vector3 CalculatePosition(int index)
@@ -109,12 +140,13 @@ public class BuildObjectUI : UIView
         }
     }
 
-    public void RefreshUI()
+    protected override void RefreshUI()
     {
+        base.RefreshUI();
         int count = 0;
         foreach (var obj in directory.buildObjects)
         {
-            bool is_selected = count == cachedSelection;
+            bool is_selected = obj == directory.GetSelectedObject();
             Vector3 position = CalculatePosition(count);
             AssignSlotValues(slots[count], obj, is_selected);
             count++;

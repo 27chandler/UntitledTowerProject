@@ -9,7 +9,7 @@ public class ObjectClicker : MonoBehaviour
     public void Click()
     {
         RaycastHit hit;
-        Debug.Log("Rasy fired");
+        Debug.Log("Ray fired");
 
         Physics.Raycast(transform.position, transform.forward, out hit, clickDistance, mask);
 
@@ -24,8 +24,30 @@ public class ObjectClicker : MonoBehaviour
         }
     }
 
+    public void HoldClick()
+    {
+        RaycastHit hit;
+
+        Physics.Raycast(transform.position, transform.forward, out hit, clickDistance, mask);
+
+        if (hit.collider != null)
+        {
+            IClickable hold_click_behaviour = hit.collider.GetComponent<IClickable>();
+
+            if (hold_click_behaviour != null)
+            {
+                TriggerHoldClickBehaviours(hold_click_behaviour);
+            }
+        }
+    }
+
     private void TriggerClickBehaviours(IClickable clickable)
     {
         clickable.LeftClicked();
+    }
+
+    private void TriggerHoldClickBehaviours(IClickable clickable)
+    {
+        clickable.LeftClickHold();
     }
 }

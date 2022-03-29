@@ -27,6 +27,11 @@ public class WorldSpaceClick : MonoBehaviour
             LeftClick();
         }
 
+        if (Input.GetButton("Select"))
+        {
+            LeftClickHold();
+        }
+
 
         //Set up the new Pointer Event
         m_PointerEventData = new PointerEventData(m_EventSystem);
@@ -104,6 +109,47 @@ public class WorldSpaceClick : MonoBehaviour
             foreach (IClickable button in buttons)
             {
                 button.LeftClicked();
+            }
+        }
+    }
+
+    private void LeftClickHold()
+    {
+        //Set up the new Pointer Event
+        m_PointerEventData = new PointerEventData(m_EventSystem);
+        //Set the Pointer Event Position to that of the mouse position
+        m_PointerEventData.position = Input.mousePosition;
+
+        //Create a list of Raycast Results
+        List<RaycastResult> results = new List<RaycastResult>();
+        List<IClickable> buttons = new List<IClickable>();
+
+        //Raycast using the Graphics Raycaster and mouse click position
+        m_Raycaster.Raycast(m_PointerEventData, results);
+
+        //For every result returned, output the name of the GameObject on the Canvas hit by the Ray
+        foreach (RaycastResult result in results)
+        {
+            IClickable button = result.gameObject.GetComponent<IClickable>();
+            if (button != null)
+            {
+                buttons.Add(button);
+            }
+        }
+
+        if (results.Count > 0)
+        {
+            foreach (Transform cursor in cursors)
+            {
+                cursor.position = results[0].worldPosition;
+            }
+        }
+
+        if (buttons.Count > 0)
+        {
+            foreach (IClickable button in buttons)
+            {
+                button.LeftClickHold();
             }
         }
     }

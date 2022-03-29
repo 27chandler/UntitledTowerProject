@@ -6,4 +6,5 @@ public interface IClickable
 {
     void Hover();
     void LeftClicked();
+    void LeftClickHold();
 }

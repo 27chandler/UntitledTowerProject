@@ -24,6 +24,11 @@ public class BedInteract : MonoBehaviour, IClickable
         }
     }
 
+    public void LeftClickHold()
+    {
+
+    }
+
     private void Sleep()
     {
         if (localStation.IsUnlocked("Bedroom"))

@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: AlarmClock
   m_EditorClassIdentifier: 
   identifier: AlarmClock
+  category: 3
+  isEnabled: 1
   prefab: {fileID: 3996804615546447288, guid: 594b597bde0c6f246ae3cc807ae387ce, type: 3}
   preview: {fileID: 1788419644777317795, guid: cf2da64b72b59fd4bb5f47155ecbf661, type: 3}
   offset: {x: 0.5, y: 0.5, z: 0.5}

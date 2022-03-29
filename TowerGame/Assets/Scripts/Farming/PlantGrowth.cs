@@ -11,6 +11,8 @@ public class PlantGrowth : MonoBehaviour
     [SerializeField] private Text plantInfoText;
     [SerializeField] private string growthTextPrefix;
     [SerializeField] private ParticleSystem harvestParticles;
+    [SerializeField] private bool doAutoHarvest;
+    [SerializeField] private string autoHarvestSegment;
     private GameObject plantMesh;
     private int growthStage = 0;
     private bool isPlanted = false;
@@ -18,13 +20,16 @@ public class PlantGrowth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DayCycle.Subscribe("Default", "Morning").AddListener(HarvestCheck);
+        if (doAutoHarvest)
+        {
+            DayCycle.Subscribe("Default", autoHarvestSegment).AddListener(HarvestCheck);
+        }
         UpdateUI();
     }
 
     private void Grow()
     {
-        if (isPlanted)
+        if (isPlanted && growthStage < currentPlant.growthTime)
         {
             growthStage++;
         }
@@ -41,6 +46,18 @@ public class PlantGrowth : MonoBehaviour
         if (growthStage >= currentPlant.growthTime)
         {
             Harvest();
+        }
+    }
+
+    public bool IsHarvestReady()
+    {
+        if (currentPlant == null)
+        {
+            return false;
+        }
+        else
+        {
+            return growthStage >= currentPlant.growthTime;
         }
     }
 

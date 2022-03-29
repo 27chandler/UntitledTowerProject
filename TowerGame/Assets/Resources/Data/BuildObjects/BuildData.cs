@@ -7,6 +7,7 @@ using System;
 public class BuildData : ScriptableObject
 {
     [SerializeField] public string identifier;
+    [SerializeField] public BLUEPRINT_CATEGORIES category;
     [SerializeField] public bool isEnabled = true;
     [SerializeField] public GameObject prefab;
     [SerializeField] public GameObject preview;

@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: PowerStation
   m_EditorClassIdentifier: 
   identifier: PowerStation
+  category: 4
+  isEnabled: 1
   prefab: {fileID: 6375187802217279926, guid: 8a1fe0e7e1694e8488736da99c030440, type: 3}
   preview: {fileID: 8466613189928496308, guid: c8708147b1812d84bb82b2d67260213f, type: 3}
   offset: {x: 0.5, y: 0.5, z: 0.5}

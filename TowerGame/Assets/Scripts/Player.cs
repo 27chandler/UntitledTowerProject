@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
 
     [Space]
 
+    public int shownTab = 0;
     [SerializeField] public INTERACTION_STATE mode = INTERACTION_STATE.DEFAULT;
     [SerializeField] private bool canPlaceObject = true;
     [SerializeField] private bool canDragPlaceObjects = false;
@@ -64,6 +65,28 @@ public class Player : MonoBehaviour
         {
             BuildMode();
         }
+
+        if (Input.GetButtonDown("NextTab"))
+        {
+            Debug.Log("Next tab pressed");
+            shownTab++;
+
+            if (shownTab >= System.Enum.GetNames(typeof(BLUEPRINT_CATEGORIES)).Length)
+            {
+                shownTab = 0;
+            }
+        }
+
+        if (Input.GetButtonDown("PreviousTab"))
+        {
+            Debug.Log("Previous tab pressed");
+            shownTab--;
+
+            if (shownTab < 0)
+            {
+                shownTab = System.Enum.GetNames(typeof(BLUEPRINT_CATEGORIES)).Length - 1;
+            }
+        }
     }
 
     private void DefaultMode()
@@ -71,6 +94,10 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown("Select"))
         {
             objectClicker.Click();
+        }
+        if (Input.GetButton("Select"))
+        {
+            objectClicker.HoldClick();
         }
     }
 

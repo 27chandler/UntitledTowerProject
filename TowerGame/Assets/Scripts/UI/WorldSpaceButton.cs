@@ -48,4 +48,8 @@ public class WorldSpaceButton : MonoBehaviour, IClickable
         highlightTimer = highlightResetTime;
         image.color = hoverColour;
     }
+
+    public void LeftClickHold()
+    {
+    }
 }

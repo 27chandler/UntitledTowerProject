@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Lamp
   m_EditorClassIdentifier: 
   identifier: Lamp
+  category: 4
   isEnabled: 1
   prefab: {fileID: 3303537746833251327, guid: 4776d34093f17dd4a93798030b02a5ef, type: 3}
   preview: {fileID: 1788419644777317795, guid: cf2da64b72b59fd4bb5f47155ecbf661, type: 3}

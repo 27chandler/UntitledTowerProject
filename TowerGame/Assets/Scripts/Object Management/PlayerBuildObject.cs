@@ -23,6 +23,7 @@ public class PlayerBuildObject : CreateObject
             }
         }
 
+        RefreshSelection();
         playerInventory.ConsumeResources(anchor, position, data);
         base.PlaceObject(anchor, position);
     }

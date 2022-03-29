@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Stairs
   m_EditorClassIdentifier: 
   identifier: Stair
+  category: 2
+  isEnabled: 1
   prefab: {fileID: 1117821433954053091, guid: 839fca36a616e8e4f95d6830fb43cf1e, type: 3}
   preview: {fileID: 1788419644777317795, guid: cf2da64b72b59fd4bb5f47155ecbf661, type: 3}
   offset: {x: 0.5, y: 1, z: 0.5}

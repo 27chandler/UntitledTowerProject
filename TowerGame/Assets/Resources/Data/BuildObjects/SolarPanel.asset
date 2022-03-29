@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: SolarPanel
   m_EditorClassIdentifier: 
   identifier: SolarPanel
+  category: 4
+  isEnabled: 1
   prefab: {fileID: 7677986212959815625, guid: b180680e23057d542bed09ab7865a232, type: 3}
   preview: {fileID: 1788419644777317795, guid: cf2da64b72b59fd4bb5f47155ecbf661, type: 3}
   offset: {x: 0.5, y: 0.5, z: 0.5}

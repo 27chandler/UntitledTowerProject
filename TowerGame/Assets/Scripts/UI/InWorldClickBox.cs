@@ -13,4 +13,9 @@ public class InWorldClickBox : MonoBehaviour, IClickable
     {
         Debug.Log("click");
     }
+
+    void IClickable.LeftClickHold()
+    {
+        Debug.Log("click hold");
+    }
 }
