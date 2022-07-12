@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 [ExecuteInEditMode]
 public class GenerateChunk : MonoBehaviour
@@ -14,6 +15,7 @@ public class GenerateChunk : MonoBehaviour
     [SerializeField] private Transform sphere;
     [SerializeField] private Vector3 deletePosition;
     [SerializeField] private Vector3Int size = new Vector3Int(8, 8, 8);
+    
     private Vector3 pointPos;
     private Vector3 gridPos;
     private Vector3 gridOffset = new Vector3(-1.0f, 0.0f, -1.0f);
@@ -28,11 +30,27 @@ public class GenerateChunk : MonoBehaviour
         public Vector3Int gridPosition;
         public List<Vector3> verts = new List<Vector3>();
         public List<int> ebos = new List<int>();
+        public Quad.DIRECTION directionFlags =
+            Quad.DIRECTION.UP | 
+            Quad.DIRECTION.DOWN | 
+            Quad.DIRECTION.LEFT | 
+            Quad.DIRECTION.RIGHT | 
+            Quad.DIRECTION.FORWARD | 
+            Quad.DIRECTION.BACKWARD;
 
         public Voxel(Vector3 position, int id)
         {
             this.position = position;
             this.id = id;
+
+            RegenFaces();
+        }
+
+        public void RegenFaces()
+        {
+            verts.Clear();
+            ebos.Clear();
+
             gridPosition = new Vector3Int(Mathf.RoundToInt(position.x), Mathf.RoundToInt(position.y), Mathf.RoundToInt(position.z));
             faces = new Quad[]
             {
@@ -46,39 +64,58 @@ public class GenerateChunk : MonoBehaviour
 
             foreach (var face in faces)
             {
-                foreach (var vert in face.verts)
+                if ((face.dir & directionFlags) == face.dir)
                 {
-                    verts.Add(vert);
+                    foreach (var vert in face.verts)
+                    {
+                        verts.Add(vert);
+                    }
+                }
+                else
+                {
+                    Debug.Log("Face is blocked");
                 }
             }
 
             int face_id = 0;
             foreach (var face in faces)
             {
-                foreach (var ebo in face.ebo)
+                if ((face.dir & directionFlags) == face.dir)
                 {
-                    ebos.Add((face_id * 4) + ebo);
+                    foreach (var ebo in face.ebo)
+                    {
+                        ebos.Add((face_id * 4) + ebo);
+                    }
+                    face_id++;
                 }
-                face_id++;
             }
+        }
+
+        public void DisableFace(Quad.DIRECTION face)
+        {
+            directionFlags = directionFlags & ~face;
+
+            RegenFaces();
         }
     }
     public class Quad
     {
+        [Flags]
         public enum DIRECTION
         {
-            NONE,
-            UP,
-            DOWN,
-            LEFT,
-            RIGHT,
-            FORWARD,
-            BACKWARD
+            NONE = 0,
+            UP = 1,
+            DOWN = 2,
+            LEFT = 4,
+            RIGHT = 8,
+            FORWARD = 16,
+            BACKWARD = 32
         }
 
         private Vector3 topRightPostion = new Vector3(0.0f,0.0f,0.0f);
         private Vector3 normal = new Vector3(0.0f, 1.0f, 0.0f);
         private Vector3 right;
+        public DIRECTION dir;
         public Vector3[] verts;
         public int[] ebo = new int[]
         {
@@ -129,6 +166,7 @@ public class GenerateChunk : MonoBehaviour
         {
             topRightPostion = position;
             Vector2 rotation = FindRotation(direction);
+            dir = direction;
 
             verts = new Vector3[]
             {
@@ -177,6 +215,20 @@ public class GenerateChunk : MonoBehaviour
         gridPos = grid_position;
 
         return grid_position;
+    }
+
+    public bool HasVoxel(Vector3Int position)
+    {
+        Voxel found_voxel = Voxels.Find(x => x.gridPosition == position);
+
+        if (found_voxel != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public void DeleteVoxel(Vector3Int position)
@@ -247,14 +299,29 @@ public class GenerateChunk : MonoBehaviour
         List<Vector3> verts = new List<Vector3>();
         List<int> ebos = new List<int>();
 
+        // Hide unsee-able faces (When another voxel is adjacent to it)
+        foreach (var voxel in Voxels)
+        {
+            if (HasVoxel(voxel.gridPosition + new Vector3Int(0, 1, 0)))
+            {
+                voxel.DisableFace(Quad.DIRECTION.UP);
+            }
+
+            if (HasVoxel(voxel.gridPosition + new Vector3Int(0, -1, 0)))
+            {
+                voxel.DisableFace(Quad.DIRECTION.DOWN);
+            }
+        }
+
         int id_counter = 0;
+
         foreach (var voxel in Voxels)
         {
             verts.AddRange(voxel.verts);
 
             foreach (var ebo in voxel.ebos)
             {
-                ebos.Add((id_counter * 24) + ebo);
+                ebos.Add((id_counter * voxel.verts.Count) + ebo);
             }
 
 
@@ -266,6 +333,8 @@ public class GenerateChunk : MonoBehaviour
 
         mesh.vertices = verts.ToArray();
         mesh.triangles = ebos.ToArray();
+
+        Debug.Log("Generated Mesh: Verts: " + verts.Count + " ebos: " + ebos[ebos.Count - 2]);
 
         filter.mesh = mesh;
         collider.sharedMesh = mesh;
