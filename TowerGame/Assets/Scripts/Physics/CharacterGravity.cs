@@ -9,11 +9,11 @@ public class CharacterGravity : MonoBehaviour
     [SerializeField] private float floorDistance = 1.0f;
     [SerializeField] private bool doesDetectFloor = false;
 
-    private CharacterController controller;
+    private Rigidbody rb;
 
     private void Start()
     {
-        controller = GetComponent<CharacterController>();
+        rb = GetComponent<Rigidbody>();
     }
 
     public void DoFall()
@@ -33,12 +33,14 @@ public class CharacterGravity : MonoBehaviour
 
     private void Fall()
     {
-        controller.Move(-transform.up * strength * Time.deltaTime);
+        Vector3 current_velocity = rb.velocity;
+        current_velocity.y += (strength * Time.deltaTime);
+        rb.AddForce(new Vector3(0.0f, (strength * Time.deltaTime), 0.0f));
     }
 
     private void OnDrawGizmos()
     {
-        if (controller != null)
+        if (rb != null)
         {
             Gizmos.color = Color.blue;
             Gizmos.DrawLine(transform.position, transform.position - new Vector3(0.0f, floorDistance, 0.0f));

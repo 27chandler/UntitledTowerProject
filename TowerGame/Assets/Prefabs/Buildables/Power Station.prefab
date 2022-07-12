@@ -181,6 +181,9 @@ MonoBehaviour:
   pressedColour: {r: 1, g: 0.4753248, b: 0, a: 1}
   hoverColour: {r: 0, g: 0.959244, b: 1, a: 1}
   highlightResetTime: 0.2
+  onClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &714888699921203940
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,6 +272,9 @@ MonoBehaviour:
   pressedColour: {r: 1, g: 0.4753248, b: 0, a: 1}
   hoverColour: {r: 0, g: 0.959244, b: 1, a: 1}
   highlightResetTime: 0.2
+  onClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &714888699929613236
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,6 +363,9 @@ MonoBehaviour:
   pressedColour: {r: 1, g: 0.4753248, b: 0, a: 1}
   hoverColour: {r: 0, g: 0.959244, b: 1, a: 1}
   highlightResetTime: 0.2
+  onClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &714888700070205222
 GameObject:
   m_ObjectHideFlags: 0
@@ -708,6 +717,9 @@ MonoBehaviour:
   pressedColour: {r: 1, g: 0.4753248, b: 0, a: 1}
   hoverColour: {r: 0, g: 0.959244, b: 1, a: 1}
   highlightResetTime: 0.2
+  onClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &714888700458327728
 GameObject:
   m_ObjectHideFlags: 0
@@ -789,8 +801,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 714888700611551531}
+  - component: {fileID: 7788166986952945538}
   m_Layer: 6
-  m_Name: BotCreator
+  m_Name: Station
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -812,6 +825,49 @@ Transform:
   m_Father: {fileID: 6375187802217279922}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7788166986952945538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714888700611551530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c52c341c1b104141beed67ff273cc77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredEnergy: 0.2
+  onPowered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 714888700909048085}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  onUnpowered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 714888700909048085}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &714888700909048085
 GameObject:
   m_ObjectHideFlags: 0

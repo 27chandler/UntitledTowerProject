@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class Rotation : MonoBehaviour
 {
-    [SerializeField] private CharacterController controller;
+    [SerializeField] private Transform body;
 
     private float yRotation;
+
+    private void Update()
+    {
+        Rotate();
+    }
     public void Rotate()
     {
         float x_rotation = Input.GetAxisRaw("Mouse X");
@@ -18,6 +23,6 @@ public class Rotation : MonoBehaviour
         transform.localRotation = Quaternion.Euler(yRotation, 0.0f, 0.0f);
 
         // Yaw is done on body
-        controller.transform.Rotate(Vector3.up * x_rotation);
+        body.Rotate(Vector3.up * x_rotation);
     }
 }

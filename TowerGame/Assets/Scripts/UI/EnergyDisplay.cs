@@ -10,6 +10,6 @@ public class EnergyDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        energyText.text = EnergySystem.Energy.ToString();
+        energyText.text = EnergySystem.RealtimeEnergy.ToString();
     }
 }

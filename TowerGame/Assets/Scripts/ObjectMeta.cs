@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class ObjectMeta : MonoBehaviour
 {
-    [SerializeField] [ReadOnly] public string identifier;
+    [SerializeField] public string identifier;
 }

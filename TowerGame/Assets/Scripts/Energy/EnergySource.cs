@@ -28,4 +28,9 @@ public class EnergySource : MonoBehaviour
     {
         EnergySystem.RemoveSource(this);
     }
+
+    private void FixedUpdate()
+    {
+        EnergySystem.AddRealtimeEnergy(totalPower * Time.deltaTime);
+    }
 }

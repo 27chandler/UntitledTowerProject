@@ -9,7 +9,11 @@ public class PlayerDestroyObject : DestroyObject
     public override void DeleteObject(GameObject anchor, Vector3 position, BuildData data)
     {
         BuildData found_data = directory.FindObjectData(anchor.GetComponentInParent<ObjectMeta>().identifier);
-        inventory.AddResources(anchor, position, found_data);
+
+        if (anchor.GetComponentInParent<ObjectMeta>().identifier != "Voxels")
+        {
+            inventory.AddResources(anchor, position, found_data);
+        }
 
         base.DeleteObject(anchor, position, data);
     }

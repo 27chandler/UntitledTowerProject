@@ -11,6 +11,9 @@ public class Player : MonoBehaviour
     }
 
     private CharacterMovement movement;
+    [SerializeField] private PlayerMove playerMove;
+    [SerializeField] private float jumpStrength;
+    [SerializeField] private float frictionStrength;
     private CharacterGravity gravity;
     [SerializeField] private Rotation rotation;
     [SerializeField] private Selector buildSelector;
@@ -20,6 +23,10 @@ public class Player : MonoBehaviour
     [SerializeField] private CreateObject objectCreator;
     [SerializeField] private Preview objectPreview;
     [SerializeField] private ObjectClicker objectClicker;
+
+    [SerializeField] private LayerMask floorLayers;
+    [SerializeField] private float floorDistance = 1.0f;
+    [SerializeField] private bool doesDetectFloor = false;
 
     [Space]
 
@@ -44,9 +51,25 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        movement.RunInput();
-        gravity.DoFall();
-        rotation.Rotate();
+        //movement.RunInput();
+        playerMove.RunInput();
+
+        if (Input.GetButtonDown("Jump") && doesDetectFloor)
+        {
+            playerMove.Jump(Vector3.up, jumpStrength);
+        }
+
+        //if (Physics.Raycast(transform.position, -transform.up, floorDistance, floorLayers))
+        if (Physics.CheckSphere(transform.position + new Vector3(0.0f,-floorDistance,0.0f),0.5f, floorLayers))
+        {
+            doesDetectFloor = true;
+        }
+        else
+        {
+            doesDetectFloor = false;
+        }
+        //gravity.DoFall();
+        //rotation.Rotate();
 
         if (Input.GetButtonDown("SwapMode"))
         {
@@ -87,6 +110,19 @@ public class Player : MonoBehaviour
                 shownTab = System.Enum.GetNames(typeof(BLUEPRINT_CATEGORIES)).Length - 1;
             }
         }
+    }
+
+    private void FixedUpdate()
+    {
+        if (doesDetectFloor)
+        {
+            OnTouchingFloor();
+        }
+    }
+
+    private void OnTouchingFloor()
+    {
+        //playerMove.FloorFriction(frictionStrength);
     }
 
     private void DefaultMode()
@@ -135,5 +171,18 @@ public class Player : MonoBehaviour
             objectCreator.RotateCreation(90.0f);
             objectPreview.RotatePreview(90.0f);
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (doesDetectFloor)
+        {
+            Gizmos.color = Color.blue;
+        }
+        else
+        {
+            Gizmos.color = Color.red;
+        }
+        Gizmos.DrawLine(transform.position, transform.position - new Vector3(0.0f, floorDistance, 0.0f));
     }
 }

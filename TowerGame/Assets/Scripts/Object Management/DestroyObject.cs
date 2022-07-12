@@ -13,20 +13,41 @@ public class DestroyObject : MonoBehaviour
 
     public void DeleteObject(GameObject anchor, Vector3 position)
     {
-        if (doesDestroyParent)
+        GameObject object_to_destroy = anchor;
+
+        GenerateChunk chunk = object_to_destroy.GetComponent<GenerateChunk>();
+
+        if (chunk != null)
         {
-            if (anchor.transform.parent == null)
+            DestroyVoxel(chunk, position);
+        }
+        else if (doesDestroyParent)
+        {
+            bool is_destroy_finished = false;
+
+            while (!is_destroy_finished)
             {
-                Destroy(anchor);
+                if (object_to_destroy.GetComponent<ObjectMeta>() != null
+                    || object_to_destroy.transform.parent == null)
+                {
+                    Destroy(object_to_destroy);
+                    is_destroy_finished = true;
+                }
+                else
+                {
+                    object_to_destroy = object_to_destroy.transform.parent.gameObject;
+                }
             }
-            else
-            {
-                Destroy(anchor.transform.parent.gameObject);
-            }
+
         }
         else
         {
-            Destroy(anchor);
+            Destroy(object_to_destroy);
         }
+    }
+
+    public void DestroyVoxel(GenerateChunk chunk, Vector3 position)
+    {
+        chunk.DeleteVoxel(chunk.FindGridPosition(position));
     }
 }

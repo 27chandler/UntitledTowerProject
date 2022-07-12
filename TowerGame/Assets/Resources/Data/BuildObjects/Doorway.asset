@@ -16,7 +16,7 @@ MonoBehaviour:
   category: 1
   isEnabled: 1
   prefab: {fileID: 2245675358679157981, guid: 1d00a4ba916452e4d830c04166a6eb23, type: 3}
-  preview: {fileID: 8737386742986793413, guid: b1e29d1df68c83146b231e3443134fc8, type: 3}
+  preview: {fileID: 635431270446412138, guid: 2133903209b4b3f45a4825149752e7f9, type: 3}
   offset: {x: 0.5, y: 0.5, z: 0.5}
   neededResources:
   - item: {fileID: 11400000, guid: eae1d2f7e8661334e9a04004788c9352, type: 2}

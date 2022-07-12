@@ -288,7 +288,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2a43b45884d05e4caa9d0427e36141e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energyValue: 0.1
+  particles: {fileID: 0}
+  usesParticles: 0
+  energyValue: 1
   totalPower: 0
   lightSources:
   - direction: {x: 0, y: 1, z: 1}

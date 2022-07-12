@@ -2,18 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CharacterController))]
 public class CharacterMovement : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private Transform headTarget;
+    [SerializeField] private Transform bodyTarget;
+    [SerializeField] private Rigidbody rb;
 
     private CharacterController controller;
 
     private void Start()
     {
         if (headTarget == null)
+        {
             headTarget = transform;
+        }
+
+        if (bodyTarget == null)
+        {
+            bodyTarget = transform;
+        }
 
         controller = GetComponent<CharacterController>();
     }
@@ -30,6 +38,8 @@ public class CharacterMovement : MonoBehaviour
         direction += flat_forwards * Input.GetAxisRaw("Vertical");
         direction.Normalize();
 
-        controller.Move(direction * speed * Time.deltaTime);
+        //controller.Move(direction * speed * Time.deltaTime);
+        //rb.MovePosition(rb.position + (direction * speed * Time.deltaTime));
+        rb.AddForce(direction * speed * Time.deltaTime);
     }
 }

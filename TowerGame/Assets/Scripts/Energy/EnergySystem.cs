@@ -7,7 +7,10 @@ public class EnergySystem : MonoBehaviour
     [SerializeField] private static float energy;
     [SerializeField] private static List<EnergySource> sources = new List<EnergySource>();
 
+    private static float realtimeEnergy = 0.0f;
+
     public static float Energy { get => energy; set => energy = value; }
+    public static float RealtimeEnergy { get => realtimeEnergy; set => realtimeEnergy = value; }
 
     public static void AddSource(EnergySource source)
     {
@@ -31,5 +34,24 @@ public class EnergySystem : MonoBehaviour
         }
 
         Debug.Log("Total energy is now: " + energy);
+    }
+
+    public static void AddRealtimeEnergy(float amount)
+    {
+        realtimeEnergy += amount;
+    }
+
+    public static bool ConsumeRealtimeEnergy(float amount)
+    {
+        if (realtimeEnergy >= amount)
+        {
+            realtimeEnergy -= amount;
+            return true;
+        }
+        else
+        {
+            realtimeEnergy = 0.0f;
+            return false;
+        }
     }
 }

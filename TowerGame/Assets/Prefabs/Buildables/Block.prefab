@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 7210973601539732524}
   - component: {fileID: 7210973601539732523}
   - component: {fileID: 7210973601539732522}
-  - component: {fileID: 1525961714715474956}
+  - component: {fileID: 1972767477340683624}
+  - component: {fileID: 7281107398270144576}
   m_Layer: 6
   m_Name: Block
   m_TagString: Untagged
@@ -61,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b7764f61c48472b4d94d7f1af523847c, type: 2}
+  - {fileID: 2100000, guid: 66642a6675b38f64f99e4799d963735a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -96,7 +97,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &1525961714715474956
+--- !u!114 &1972767477340683624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7210973601539732521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5dd82e00fc143a4f93e8c5c2640432d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  identifier: Block
+--- !u!54 &7281107398270144576
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
